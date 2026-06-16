@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectalex Academy & Digital Solutions</title>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0a192f;
+    --primary-light: #172a45;
+    --accent: #10b981;
+    --accent-hover: #059669;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --card-bg: #ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body{
+background: var(--bg-light);
+overflow-x:hidden;
+color: var(--text-main);
+-webkit-font-smoothing: antialiased;
+}
+
+/* ADMISSION POPUP MODAL STYLES (UPDATED WITH ADVANCED PULSE ANIMATION) */
+.ad-modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(10, 25, 47, 0.8);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 10000;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ad-modal-overlay.show {
+opacity: 1;
+pointer-events: auto;
+}
+
+.ad-modal-content {
+background: var(--card-bg);
+width: 90%;
+max-width: 500px;
+border-radius: 24px;
+overflow: hidden;
+position: relative;
+box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+transform: scale(0.7) translateY(30px);
+transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+border: 1px solid rgba(255, 255, 255, 0.1);
+display: flex;
+flex-direction: column;
+}
+
+.ad-modal-overlay.show .ad-modal-content {
+transform: scale(1) translateY(0);
+}
+
+.ad-close-btn {
+position: absolute;
+top: 15px;
+right: 15px;
+background: rgba(10, 25, 47, 0.7);
+color: white;
+border: none;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+font-size: 20px;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+z-index: 10;
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ad-close-btn:hover {
+background: #ef4444;
+color: white;
+transform: rotate(90deg) scale(1.1);
+}
+
+.ad-image-wrapper {
+width: 100%;
+display: block;
+line-height: 0;
+position: relative;
+overflow: hidden;
+}
+
+.ad-image-wrapper img {
+width: 100%;
+height: auto;
+object-fit: contain;
+display: block;
+transition: transform 0.5s ease;
+}
+
+.ad-modal-content:hover .ad-image-wrapper img {
+transform: scale(1.03);
+}
+
+.ad-action-area {
+padding: 25px;
+text-align: center;
+background: white;
+}
+
+.ad-enroll-btn {
+display: inline-block;
+width: 100%;
+padding: 16px;
+background: var(--accent);
+color: var(--primary);
+text-decoration: none;
+border-radius: 12px;
+font-weight: 700;
+font-size: 16px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border: none;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+z-index: 1;
+}
+
+.ad-enroll-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: all 0.6s ease;
+z-index: -1;
+}
+
+.ad-enroll-btn:hover::before {
+left: 100%;
+}
+
+.ad-enroll-btn:hover {
+background: var(--primary);
+color: white;
+transform: translateY(-2px);
+box-shadow: 0 12px 24px rgba(10, 25, 47, 0.3);
+}
+
+/* NAVIGATION HEADER (GLASSMORPHISM WITH SLICK TRANSITIONS) */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background: rgba(10, 25, 47, 0.95);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 80px;
+z-index:999;
+box-shadow:0 4px 30px rgba(0,0,0,0.1);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled {
+padding: 15px 80px;
+background: rgba(10, 25, 47, 0.98);
+box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.logo-section{
+display:flex;
+align-items:center;
+gap:15px;
+cursor: pointer;
+}
+
+.logo-section img{
+width:55px;
+height:55px;
+border-radius:12px;
+background:white;
+object-fit: cover;
+border: 2px solid rgba(255,255,255,0.1);
+transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-section:hover img {
+transform: rotate(-8px) scale(1.1);
+}
+
+.logo-text h2{
+color:white;
+font-size:24px;
+font-weight: 800;
+letter-spacing: 1.5px;
+}
+
+.logo-text p{
+color: var(--accent);
+font-weight:700;
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-top: 2px;
+}
+
+nav {
+display: flex;
+align-items: center;
+}
+
+nav a{
+color: #cbd5e1;
+text-decoration:none;
+margin-left:35px;
+font-weight:500;
+font-size: 15px;
+transition: color 0.3s ease;
+position: relative;
+padding: 5px 0;
+}
+
+nav a:hover{
+color: white;
+}
+
+nav a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+width: 0;
+height: 2px;
+background: var(--accent);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+transform: translateX(-50%);
+}
+
+nav a:hover::after {
+width: 100%;
+}
+
+/* PREMIUM HERO SECTION WITH CINEMATIC FADE-IN ANIMATIONS */
+.hero{
+height:100vh;
+background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img1.jpeg');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+transition: background 1.5s ease-in-out;
+position: relative;
+}
+
+.hero::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100px;
+background: linear-gradient(to top, var(--bg-light), transparent);
+}
+
+.hero-content {
+max-width: 900px;
+z-index: 2;
+}
+
+.hero-content h1{
+font-size:68px;
+margin-bottom:25px;
+font-weight: 800;
+line-height: 1.15;
+letter-spacing: -1px;
+text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-content p{
+font-size:22px;
+margin-bottom:40px;
+color: #f1f5f9;
+font-weight: 400;
+letter-spacing: 0.5px;
+animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-content button{
+padding:18px 50px;
+font-size:16px;
+border:none;
+border-radius:100px;
+background: var(--accent);
+color: var(--primary);
+cursor:pointer;
+font-weight:700;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+animation: fadeInUp 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-content button:hover{
+transform: translateY(-4px) scale(1.02);
+background: white;
+box-shadow: 0 20px 35px rgba(255,255,255,0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* SECTIONS BASE STYLING */
+section{
+padding:120px 80px;
+position: relative;
+}
+
+.section-title{
+text-align:center;
+font-size:42px;
+color: var(--primary);
+margin-bottom:15px;
+font-weight: 800;
+letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+text-align: center;
+color: var(--text-muted);
+margin-bottom: 60px;
+font-size: 19px;
+font-weight: 400;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* CORPORATE ABOUT SECTION WITH HOVER MOTION */
+.about{
+display:grid;
+grid-template-columns: 1.1fr 0.9fr;
+gap:70px;
+align-items:center;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.about-img-container {
+position: relative;
+width: 100%;
+display: flex;
+align-items: center;
+}
+
+.about-img-container::before {
+content: '';
+position: absolute;
+top: -20px;
+left: -20px;
+width: 200px;
+height: 200px;
+border-top: 5px solid var(--accent);
+border-left: 5px solid var(--accent);
+border-radius: 20px 0 0 0;
+z-index: 0;
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about:hover .about-img-container::before {
+    transform: translate(-8px, -8px);
+    border-color: var(--primary);
+}
+
+.about img{
+width:100%;
+height: auto;
+max-height: 480px;
+object-fit: contain;
+background: transparent;
+border-radius:24px;
+box-shadow: 0 20px 40px rgba(10,25,47,0.15);
+position: relative;
+z-index: 1;
+transition: transform 0.5s ease;
+}
+
+.about:hover img {
+    transform: scale(1.02);
+}
+
+.about-text{
+font-size:18px;
+line-height:1.85;
+color: #475569;
+}
+
+.about-text p {
+margin-bottom: 25px;
+}
+
+.about-highlight {
+border-left: 4px solid var(--accent);
+padding-left: 20px;
+font-style: italic;
+font-weight: 500;
+color: var(--primary);
+transition: border-color 0.3s;
+}
+
+.about:hover .about-highlight {
+    border-color: var(--primary);
+}
+
+/* HIGH-STANDARD COURSE GRID & CARDS (WITH ADVANCED CAROUSEL-LIKE HOVER) */
+.courses-section {
+background: #f1f5f9;
+}
+
+.course-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+gap:35px;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.course-card{
+background: var(--card-bg);
+border-radius:24px;
+overflow: hidden;
+box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+flex-direction: column;
+border: 1px solid rgba(226, 232, 240, 0.8);
+position: relative;
+}
+
+.course-card:hover{
+transform:translateY(-12px);
+box-shadow: 0 30px 60px -15px rgba(10,25,47,0.18);
+border-color: rgba(16, 185, 129, 0.4);
+}
+
+.course-image-wrapper {
+width: 100%;
+height: 220px;
+overflow: hidden;
+background: #e2e8f0;
+position: relative;
+}
+
+.course-card img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.course-card:hover img {
+transform: scale(1.08);
+}
+
+.course-badge {
+position: absolute;
+top: 15px;
+right: 15px;
+background: rgba(10, 25, 47, 0.85);
+color: var(--accent);
+backdrop-filter: blur(4px);
+padding: 6px 14px;
+border-radius: 50px;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+border: 1px solid rgba(16, 185, 129, 0.4);
+transition: all 0.3s ease;
+z-index: 2;
+}
+
+.course-card:hover .course-badge {
+    background: var(--accent);
+    color: var(--primary);
+    transform: scale(1.05);
+}
+
+.course-details {
+padding: 30px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+
+.course-card h3{
+color: var(--primary);
+font-size: 23px;
+margin-bottom:12px;
+font-weight: 700;
+letter-spacing: -0.3px;
+transition: color 0.3s;
+}
+
+.course-card:hover h3 {
+    color: var(--accent);
+}
+
+.course-card .desc {
+color: var(--text-muted);
+font-size: 15px;
+line-height: 1.6;
+margin-bottom: 25px;
+flex-grow: 1;
+}
+
+.course-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-top: 1px solid #f1f5f9;
+padding-top: 20px;
+margin-top: auto;
+}
+
+.price-container {
+display: flex;
+flex-direction: column;
+}
+
+.price-label {
+font-size: 11px;
+text-transform: uppercase;
+color: var(--text-muted);
+letter-spacing: 0.5px;
+}
+
+.price{
+color: #059669;
+font-size:26px;
+font-weight:800;
+transition: transform 0.3s;
+}
+
+.course-card:hover .price {
+    transform: scale(1.05);
+}
+
+.enroll-btn {
+background: var(--primary);
+color: white;
+padding: 12px 26px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 1px solid transparent;
+cursor: pointer;
+}
+
+.enroll-btn:hover {
+background: var(--accent);
+color: var(--primary);
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* PREMIUM WHY CHOOSE US SECTION */
+.features{
+background: var(--primary);
+color:white;
+overflow: hidden;
+}
+
+.features::before {
+content: '';
+position: absolute;
+top: -10%;
+right: -10%;
+width: 400px;
+height: 400px;
+background: rgba(16, 185, 129, 0.05);
+border-radius: 50%;
+filter: blur(80px);
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:35px;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.feature-box{
+background: rgba(255, 255, 255, 0.03);
+padding: 45px 30px;
+border-radius: 24px;
+text-align: center;
+border: 1px solid rgba(255, 255, 255, 0.05);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-box:hover {
+background: rgba(255, 255, 255, 0.07);
+transform: translateY(-10px);
+border-color: rgba(16, 185, 129, 0.4);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-box h3{
+font-size: 22px;
+margin-bottom: 15px;
+color: var(--accent);
+font-weight: 700;
+transition: transform 0.3s;
+}
+
+.feature-box:hover h3 {
+    transform: scale(1.05);
+}
+
+.feature-box p {
+color: #94a3b8;
+font-size: 15px;
+line-height: 1.6;
+}
+
+/* CORPORATE CONTACT SECTION */
+.contact{
+background: var(--card-bg);
+}
+
+.contact-box{
+display:grid;
+grid-template-columns: 0.91fr 1.1fr;
+gap:80px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.contact-info {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.contact-info h3 {
+color: var(--primary);
+font-size: 32px;
+margin-bottom: 25px;
+font-weight: 800;
+}
+
+.contact-card-item {
+background: var(--bg-light);
+padding: 25px;
+border-radius: 16px;
+margin-bottom: 20px;
+border: 1px solid #e2e8f0;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-card-item:hover {
+    transform: translateX(5px);
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+.contact-card-item p {
+font-size: 16px;
+color: var(--text-main);
+}
+
+.contact-card-item b {
+color: var(--text-muted);
+font-size: 13px;
+text-transform: uppercase;
+display: block;
+margin-bottom: 5px;
+letter-spacing: 0.5px;
+}
+
+form {
+background: var(--bg-light);
+padding: 45px;
+border-radius: 28px;
+border: 1px solid #e2e8f0;
+box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+form input,
+form textarea{
+width:100%;
+padding:16px;
+margin-bottom:20px;
+border: 1px solid #cbd5e1;
+background: white;
+color: var(--text-main);
+border-radius:12px;
+outline: none;
+font-size: 15px;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+form input:focus,
+form textarea:focus {
+border-color: var(--accent);
+box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+transform: translateY(-2px);
+}
+
+form button{
+background: var(--primary);
+color: white;
+border:none;
+padding:16px 30px;
+border-radius:12px;
+cursor:pointer;
+font-size: 16px;
+font-weight: 600;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+width: 100%;
+letter-spacing: 0.5px;
+}
+
+form button:hover {
+background: var(--accent);
+color: var(--primary);
+transform: translateY(-2px);
+box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
+}
+
+/* FOOTER SECTION */
+footer{
+background: #050b14;
+color:white;
+padding:80px 40px 40px 40px;
+text-align:center;
+position: relative;
+}
+
+footer::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+}
+
+footer img{
+width:80px;
+height: 80px;
+border-radius: 14px;
+object-fit: cover;
+margin-bottom:25px;
+border: 2px solid rgba(255,255,255,0.1);
+transition: transform 0.5s ease;
+}
+
+footer id:hover img {
+    transform: scale(1.05) rotate(360deg);
+}
+
+footer h2 {
+font-size: 26px;
+font-weight: 800;
+margin-bottom: 12px;
+letter-spacing: 0.5px;
+}
+
+footer .tagline {
+color: #94a3b8;
+font-size: 16px;
+margin-bottom: 40px;
+}
+
+footer .copyright {
+color: #64748b;
+font-size: 14px;
+border-top: 1px solid rgba(255,255,255,0.05);
+padding-top: 30px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* FLOATING WHATSAPP BUTTON (WITH INFINITE WAVE PULSE ANIMATION) */
+.whatsapp{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#25D366;
+width:65px;
+height:65px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+text-decoration:none;
+color:white;
+box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+z-index: 999;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+animation: pulseWhatsapp 2s infinite;
+}
+
+.whatsapp:hover {
+transform: scale(1.1) translateY(-3px);
+box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+animation: none; /* Stops pulsing on hover */
+}
+
+@keyframes pulseWhatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* RESPONSIVE DESIGN MEDIA QUERIES */
+@media(max-width:1024px){
+header, header.scrolled { padding: 20px 40px; }
+section { padding: 80px 40px; }
+.about { gap: 40px; }
+}
+
+@media(max-width:768px){
+header, header.scrolled {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+}
+nav {
+    margin-top: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 0;
+}
+nav a {
+    margin: 0 12px;
+    font-size: 14px;
+}
+.hero-content h1{
+    font-size:42px;
+}
+.hero-content p {
+    font-size: 18px;
+}
+.about, .contact-box{
+    grid-template-columns:1fr;
+    gap: 40px;
+}
+.about img {
+    height: auto;
+    max-height: 350px;
+}
+section {
+    padding: 80px 20px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="ad-modal-overlay" id="admissionModal">
+<div class="ad-modal-content">
+<button class="ad-close-btn" onclick="closeAdModal()">&times;</button>
+<div class="ad-image-wrapper">
+<img src="ad.jpeg" alt="Admission Open Now">
+</div>
+<div class="ad-action-area">
+<button class="ad-enroll-btn" onclick="handleAdEnroll('General Admission Open Popup')">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<header id="main-header">
+<div class="logo-section" onclick="window.scrollTo(0,0)">
+<img src="logo.jpeg" alt="Tectalex Logo">
+<div class="logo-text">
+<h2>TECTALEX</h2>
+<p>Learn Today. Lead Tomorrow.</p>
+</div>
+</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#courses">Courses</a>
+<a href="#features">Why Us</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<h1>Transforming Knowledge<br>Into Expertise</h1>
+<p>Premium Training • Course Certification • Hands-on Projects</p>
+<button onclick="document.getElementById('courses').scrollIntoView()">Explore Courses</button>
+</div>
+</section>
+
+<section id="about" data-aos="fade-up">
+<h2 class="section-title">About Tectalex Academy</h2>
+<p class="section-subtitle">Building the next generation of global tech leaders</p>
+<div class="about">
+<div class="about-img-container" data-aos="fade-right">
+<img src="banner.jpeg" alt="About Tectalex Banner">
+</div>
+<div class="about-text" data-aos="fade-left">
+<p>Tectalex Academy & Digital Solutions provides high-quality, industry-oriented training programs in Programming, Full Stack Technologies, Cloud Computing, AI tools, and Advanced Developer workflows.</p>
+<p class="about-highlight">"Our curriculum is meticulously designed by corporate experts to help students, professionals, and tech enthusiasts acquire deep practical knowledge."</p>
+<p>We believe in implementation-focused lessons and comprehensive workshops that mirror real-world industrial environments.</p>
+</div>
+</div>
+</section>
+
+<section id="courses" class="courses-section">
+<h2 class="section-title" data-aos="fade-up">Our Professional Programs</h2>
+<p class="section-subtitle" data-aos="fade-up">Choose from our wide range of industry-standard professional courses</p>
+<div class="course-grid">
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Foundation</span>
+<div class="course-image-wrapper"><img src="c.jpeg" alt="C Programming"></div>
+<div class="course-details">
+<h3>C Programming</h3>
+<p class="desc">Master the foundations of coding, memory management, and data structures from scratch.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1999</span></div>
+<button onclick="redirectToWhatsApp('C Programming')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Core Tech</span>
+<div class="course-image-wrapper"><img src="c++.jpeg" alt="C++ Programming"></div>
+<div class="course-details">
+<h3>C++ Programming</h3>
+<p class="desc">Dive deep into Object-Oriented Programming (OOPs), advanced STL, and system-level applications.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
+<button onclick="redirectToWhatsApp('C++ Programming')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Most Popular</span>
+<div class="course-image-wrapper"><img src="python.jpeg" alt="Python Programming"></div>
+<div class="course-details">
+<h3>Python Programming</h3>
+<p class="desc">Learn the most versatile programming language covering basic syntax, data types, and scripting.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+<button onclick="redirectToWhatsApp('Python Programming')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Advanced</span>
+<div class="course-image-wrapper"><img src="adpython.jpeg" alt="Advanced Python"></div>
+<div class="course-details">
+<h3>Advanced Python</h3>
+<p class="desc">Unlock Web Frameworks, Automation, Data Analysis libraries, and complex multi-threading concepts.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+<button onclick="redirectToWhatsApp('Advanced Python')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Data Science</span>
+<div class="course-image-wrapper"><img src="r.jpeg" alt="R Programming"></div>
+<div class="course-details">
+<h3>R Programming</h3>
+<p class="desc">Specialize in statistical computing, data visualization, and predictive modeling for analytics.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+<button onclick="redirectToWhatsApp('R Programming')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Infrastructure</span>
+<div class="course-image-wrapper"><img src="cc.jpeg" alt="Cloud Computing"></div>
+<div class="course-details">
+<h3>Cloud Computing</h3>
+<p class="desc">Understand architecture, modern cloud services deployment, and infrastructure management.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+<button onclick="redirectToWhatsApp('Cloud Computing')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Next Gen AI</span>
+<div class="course-image-wrapper"><img src="promptengineering.jpeg" alt="Prompt Engineering"></div>
+<div class="course-details">
+<h3>Prompt Engineering</h3>
+<p class="desc">Learn to effectively guide GenAI tools and LLMs to generate high-quality enterprise code and content.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
+<button onclick="redirectToWhatsApp('Prompt Engineering')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">DevOps Base</span>
+<div class="course-image-wrapper"><img src="github.jpeg" alt="GitHub Deployment"></div>
+<div class="course-details">
+<h3>GitHub Deployment</h3>
+<p class="desc">Master Git version control, branch management workflows, and live hosting strategies via GitHub.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹999</span></div>
+<button onclick="redirectToWhatsApp('GitHub Deployment')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Career Growth</span>
+<div class="course-image-wrapper"><img src="resume.jpeg" alt="Resume Guide"></div>
+<div class="course-details">
+<h3>Resume Creation Guide</h3>
+<p class="desc">Build high-impact, ATS-friendly portfolios and resumes that stand out to tech employers.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹499</span></div>
+<button onclick="redirectToWhatsApp('Resume Creation Guide')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Professional</span>
+<div class="course-image-wrapper"><img src="documentation.jpeg" alt="Documentation Guide"></div>
+<div class="course-details">
+<h3>Documentation Guide</h3>
+<p class="desc">Learn the professional art of drafting clear software requirement sheets and project documentation.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹799</span></div>
+<button onclick="redirectToWhatsApp('Documentation Guide')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Live Event</span>
+<div class="course-image-wrapper"><img src="workshops.jpeg" alt="Workshops"></div>
+<div class="course-details">
+<h3>Interactive Workshops</h3>
+<p class="desc">Engage in live technical bootcamps covering the latest industry standards and engineering topics.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1199</span></div>
+<button onclick="redirectToWhatsApp('Interactive Workshops')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">AI Special</span>
+<div class="course-image-wrapper"><img src="ai.jpeg" alt="AI Tools Usage Guide"></div>
+<div class="course-details">
+<h3>AI Tools Usage Guide</h3>
+<p class="desc">Master cutting-edge AI utilities and modern workflows to amplify architectural productivity.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1599</span></div>
+<button onclick="redirectToWhatsApp('AI Tools Usage Guide')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Data Science</span>
+<div class="course-image-wrapper"><img src="ds.jpeg" alt="Data Science with Python"></div>
+<div class="course-details">
+<h3>Data Science with Python</h3>
+<p class="desc">Harness Python pipelines for data structural analysis, parsing algorithms, and advanced charting.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+<button onclick="redirectToWhatsApp('Data Science with Python')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Intelligence</span>
+<div class="course-image-wrapper"><img src="ml.jpeg" alt="AI and Machine Learning"></div>
+<div class="course-details">
+<h3>AI & Machine Learning</h3>
+<p class="desc">Develop complex predictive logic models, neural graphs, and custom intelligence structures.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
+<button onclick="redirectToWhatsApp('AI & Machine Learning')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Innovation</span>
+<div class="course-image-wrapper"><img src="projectideas.jpeg" alt="Project Creation Ideas"></div>
+<div class="course-details">
+<h3>Project Creation Ideas</h3>
+<p class="desc">Turn your theoretical skills into fully functional real-world deployments and enterprise-ready apps.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Mentorship</span><span class="price">Premium</span></div>
+<button onclick="redirectToWhatsApp('Project Creation Ideas / Mentorship')" class="enroll-btn">Explore Ideas</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Design</span>
+<div class="course-image-wrapper"><img src="ppt.jpeg" alt="PPT Creation Guide"></div>
+<div class="course-details">
+<h3>PPT Creation Guide</h3>
+<p class="desc">Master the art of creating premium corporate presentations and highly engaging pitch decks.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹699</span></div>
+<button onclick="redirectToWhatsApp('PPT Creation Guide')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Frontend</span>
+<div class="course-image-wrapper"><img src="react.jpeg" alt="React JS"></div>
+<div class="course-details">
+<h3>React JS</h3>
+<p class="desc">Build premium, high-performance single-page applications using components, hooks, and states.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+<button onclick="redirectToWhatsApp('React JS')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Web Base</span>
+<div class="course-image-wrapper"><img src="hc.jpeg" alt="HTML and CSS"></div>
+<div class="course-details">
+<h3>HTML & CSS</h3>
+<p class="desc">Learn modern responsive web designing with HTML5 semantic tags, CSS Grid, and Flexbox layers.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
+<button onclick="redirectToWhatsApp('HTML & CSS')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Server</span>
+<div class="course-image-wrapper"><img src="bd.jpeg" alt="Backend Development"></div>
+<div class="course-details">
+<h3>Backend Development</h3>
+<p class="desc">Design robust architectures, database pipelines, structured RESTful APIs, and secure authentication solutions.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
+<button onclick="redirectToWhatsApp('Backend Development')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Cloud Ops</span>
+<div class="course-image-wrapper"><img src="devops.jpeg" alt="DevOps"></div>
+<div class="course-details">
+<h3>DevOps</h3>
+<p class="desc">Master CI/CD pipelines, containerization with Docker, orchestration, and seamless automation workflows.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4999</span></div>
+<button onclick="redirectToWhatsApp('DevOps')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+<div class="course-card" data-aos="fade-up">
+<span class="course-badge">Full Stack</span>
+<div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Development"></div>
+<div class="course-details">
+<h3>Full Stack Development</h3>
+<p class="desc">End-to-end application development combining interactive frontends with powerful server-side infrastructures.</p>
+<div class="course-footer">
+<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹5999</span></div>
+<button onclick="redirectToWhatsApp('Full Stack Development')" class="enroll-btn">Enroll Now</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="features" id="features">
+<h2 class="section-title" style="color:white" data-aos="fade-up">Why Choose Tectalex?</h2>
+<p class="section-subtitle" style="color:#94a3b8" data-aos="fade-up">What sets our professional academy apart from the rest</p>
+<div class="feature-grid">
+<div class="feature-box" data-aos="zoom-in" data-aos-delay="100">
+<h3>Expert Trainers</h3>
+<p>Learn from certified industry professionals with years of active global tech experience.</p>
+</div>
+<div class="feature-box" data-aos="zoom-in" data-aos-delay="200">
+<h3>Live Projects</h3>
+<p>Get hands-on expertise by working on real-world application building and deployments.</p>
+</div>
+<div class="feature-box" data-aos="zoom-in" data-aos-delay="300">
+<h3>Comprehensive Material</h3>
+<p>Access carefully curated resource guides, verified code documentation, and assignments.</p>
+</div>
+<div class="feature-box" data-aos="zoom-in" data-aos-delay="400">
+<h3>Course Certification</h3>
+<p>Receive a verified, shareable completion certificate to showcase your skills and resume.</p>
+</div>
+</div>
+</section>
+
+<section id="contact" class="contact" data-aos="fade-up">
+<h2 class="section-title">Contact Us</h2>
+<p class="section-subtitle">Get in touch with our corporate team to clear your doubts or enroll</p>
+<div class="contact-box">
+<div class="contact-info" data-aos="fade-right">
+<h3>Contact Information</h3>
+<div class="contact-card-item">
+<p><b>Phone Support</b>8124220527</p>
+</div>
+<div class="contact-card-item">
+<p><b>Official Email</b>tectalexacademy@gmail.com</p>
+</div>
+</div>
+<form id="whatsappContactForm" onsubmit="sendContactToWhatsApp(event)" data-aos="fade-left">
+<input type="text" id="formName" placeholder="Your Full Name" required>
+<input type="email" id="formEmail" placeholder="Email Address" required>
+<textarea rows="5" id="formMessage" placeholder="Your Message / Query" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</section>
+
+<footer>
+<img src="logo.jpeg" alt="Tectalex Footer Logo">
+<h2>Tectalex Academy & Digital Solutions</h2>
+<p class="tagline">Learn • Build • Lead</p>
+<p class="copyright">© 2026 Tectalex Academy. All Rights Reserved.</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/918124220527" target="_blank">☎</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+// INITIALIZE ANIMATION ON SCROLL LIBRARY
+AOS.init({
+    duration: 800,
+    easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+    once: true,
+    offset: 120
+});
+
+// ADMISSION POPUP MANAGEMENT SCRIPT
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("admissionModal").classList.add("show");
+    }, 800); 
+});
+
+function closeAdModal() {
+    document.getElementById("admissionModal").classList.remove("show");
+}
+
+function handleAdEnroll(popupName) {
+    closeAdModal();
+    redirectToWhatsApp(popupName);
+}
+
+// WHATSAPP REDIRECTION FUNCTION FOR ENROLL BUTTONS
+function redirectToWhatsApp(courseName) {
+    const phoneNumber = "918124220527";
+    const textMessage = `Hi Tectalex Academy, I am interested in enrolling for the "${courseName}" course. Please provide me with more details.`;
+    const encodedMessage = encodeURIComponent(textMessage);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+}
+
+// WHATSAPP CONTACT FORM DISPATCHER
+function sendContactToWhatsApp(event) {
+    event.preventDefault();
+    const phoneNumber = "918124220527";
+    
+    const name = document.getElementById("formName").value;
+    const email = document.getElementById("formEmail").value;
+    const message = document.getElementById("formMessage").value;
+    
+    const structuredText = `*New Contact Inquiry - Tectalex Website*\n\n` +
+                           `👤 *Name:* ${name}\n` +
+                           `✉️ *Email:* ${email}\n` +
+                           `💬 *Query:* ${message}`;
+                           
+    const encodedFormMessage = encodeURIComponent(structuredText);
+    const whatsappFormURL = `https://wa.me/${phoneNumber}?text=${encodedFormMessage}`;
+    window.open(whatsappFormURL, '_blank');
+}
+
+// SCROLL EFFECT FOR HEADER ADJUSTMENT
+window.addEventListener("scroll",()=>{
+    const header = document.getElementById("main-header");
+    if(window.scrollY > 50){
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
+
+// PREMIUM SMOOTH SLIDESHOW SCRIPT FOR HERO BACKGROUND
+const heroSection = document.getElementById("home");
+let currentImgNumber = 1;
+const totalImages = 16;
+const changeInterval = 4000; 
+
+setInterval(() => {
+    currentImgNumber++;
+    if (currentImgNumber > totalImages) {
+        currentImgNumber = 1; 
+    }
+    
+    heroSection.style.background = `linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img${currentImgNumber}.jpeg')`;
+    heroSection.style.backgroundSize = "cover";
+    heroSection.style.backgroundPosition = "center";
+}, changeInterval);
+</script>
+
+</body>
+</html>
