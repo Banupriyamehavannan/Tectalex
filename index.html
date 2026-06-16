@@ -870,7 +870,7 @@ animation: none; /* Stops pulsing on hover */
     }
 }
 
-/* RESPONSIVE DESIGN MEDIA QUERIES */
+/* RESPONSIVE DESIGN MEDIA QUERIES (UPDATED FOR MAXIMUM MOBILE OPTIMIZATION) */
 @media(max-width:1024px){
 header, header.scrolled { padding: 20px 40px; }
 section { padding: 80px 40px; }
@@ -882,33 +882,98 @@ header, header.scrolled {
     padding: 15px 20px;
     flex-direction: column;
     gap: 15px;
+    position: relative; /* Fixed position overlay glitches reduction on small viewports */
 }
 nav {
     margin-top: 5px;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px 0;
+    gap: 10px;
 }
 nav a {
-    margin: 0 12px;
+    margin: 0 10px;
     font-size: 14px;
 }
+.hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 140px 20px 80px 20px; /* Enhanced space for header on mobile stacking */
+}
 .hero-content h1{
-    font-size:42px;
+    font-size:36px;
+    line-height: 1.2;
 }
 .hero-content p {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.hero-content button {
+    padding: 15px 40px;
+    font-size: 15px;
+}
+.section-title {
+    font-size: 30px;
+}
+.section-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
 }
 .about, .contact-box{
     grid-template-columns:1fr;
     gap: 40px;
 }
+.about-img-container::before {
+    display: none; /* Hide decorative corners on mobile layout to maximize real estate */
+}
 .about img {
     height: auto;
-    max-height: 350px;
+    max-height: 300px;
+}
+.course-grid {
+    grid-template-columns: 1fr; /* Strict stack layout for single column on mobile portrait viewports */
+    gap: 25px;
+    padding: 0 10px;
+}
+.course-image-wrapper {
+    height: 180px;
+}
+.course-details {
+    padding: 20px;
+}
+.course-card h3 {
+    font-size: 20px;
+}
+.course-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.price {
+    font-size: 22px;
+}
+.feature-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+.feature-box {
+    padding: 30px 20px;
+}
+form {
+    padding: 25px 20px;
+    border-radius: 20px;
 }
 section {
-    padding: 80px 20px;
+    padding: 60px 15px; /* Universal padding lock for perfect safe-edges */
+}
+.ad-modal-content {
+    width: 95%;
+}
+.whatsapp {
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 26px;
 }
 }
 </style>
