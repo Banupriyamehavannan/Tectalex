@@ -34,145 +34,6 @@ color: var(--text-main);
 -webkit-font-smoothing: antialiased;
 }
 
-/* ADMISSION POPUP MODAL STYLES (UPDATED WITH ADVANCED PULSE ANIMATION) */
-.ad-modal-overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(10, 25, 47, 0.8);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 10000;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.ad-modal-overlay.show {
-opacity: 1;
-pointer-events: auto;
-}
-
-.ad-modal-content {
-background: var(--card-bg);
-width: 90%;
-max-width: 500px;
-border-radius: 24px;
-overflow: hidden;
-position: relative;
-box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
-transform: scale(0.7) translateY(30px);
-transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-border: 1px solid rgba(255, 255, 255, 0.1);
-display: flex;
-flex-direction: column;
-}
-
-.ad-modal-overlay.show .ad-modal-content {
-transform: scale(1) translateY(0);
-}
-
-.ad-close-btn {
-position: absolute;
-top: 15px;
-right: 15px;
-background: rgba(10, 25, 47, 0.7);
-color: white;
-border: none;
-width: 36px;
-height: 36px;
-border-radius: 50%;
-font-size: 20px;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-z-index: 10;
-border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.ad-close-btn:hover {
-background: #ef4444;
-color: white;
-transform: rotate(90deg) scale(1.1);
-}
-
-.ad-image-wrapper {
-width: 100%;
-display: block;
-line-height: 0;
-position: relative;
-overflow: hidden;
-}
-
-.ad-image-wrapper img {
-width: 100%;
-height: auto;
-object-fit: contain;
-display: block;
-transition: transform 0.5s ease;
-}
-
-.ad-modal-content:hover .ad-image-wrapper img {
-transform: scale(1.03);
-}
-
-.ad-action-area {
-padding: 25px;
-text-align: center;
-background: white;
-}
-
-.ad-enroll-btn {
-display: inline-block;
-width: 100%;
-padding: 16px;
-background: var(--accent);
-color: var(--primary);
-text-decoration: none;
-border-radius: 12px;
-font-weight: 700;
-font-size: 16px;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: none;
-cursor: pointer;
-position: relative;
-overflow: hidden;
-z-index: 1;
-}
-
-.ad-enroll-btn::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-transition: all 0.6s ease;
-z-index: -1;
-}
-
-.ad-enroll-btn:hover::before {
-left: 100%;
-}
-
-.ad-enroll-btn:hover {
-background: var(--primary);
-color: white;
-transform: translateY(-2px);
-box-shadow: 0 12px 24px rgba(10, 25, 47, 0.3);
-}
-
 /* NAVIGATION HEADER (GLASSMORPHISM WITH SLICK TRANSITIONS) */
 header{
 position:fixed;
@@ -186,7 +47,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:25px 80px;
-z-index:999;
+z-index:9999; 
 box-shadow:0 4px 30px rgba(0,0,0,0.1);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -268,6 +129,29 @@ transform: translateX(-50%);
 
 nav a:hover::after {
 width: 100%;
+}
+
+/* FIXED EXPLICIT MOBILE HAMBURGER ICON ALIGNMENT OVERRIDES */
+.menu-toggle {
+display: none;
+flex-direction: column;
+justify-content: space-between;
+width: 30px;
+height: 22px;
+background: transparent;
+border: none;
+cursor: pointer;
+padding: 0;
+z-index: 10000;
+}
+
+.menu-toggle span {
+display: block !important;
+width: 100% !important;
+height: 3px !important;
+background-color: #ffffff !important; 
+border-radius: 4px;
+transition: all 0.3s ease-in-out;
 }
 
 /* PREMIUM HERO SECTION WITH CINEMATIC FADE-IN ANIMATIONS */
@@ -379,6 +263,17 @@ margin-left: auto;
 margin-right: auto;
 }
 
+.category-title {
+font-size: 28px;
+color: var(--primary);
+margin: 50px 0 25px 0;
+padding-bottom: 10px;
+border-bottom: 3px solid var(--accent);
+display: inline-block;
+font-weight: 700;
+letter-spacing: -0.3px;
+}
+
 /* CORPORATE ABOUT SECTION WITH HOVER MOTION */
 .about{
 display:grid;
@@ -455,7 +350,7 @@ transition: border-color 0.3s;
     border-color: var(--primary);
 }
 
-/* HIGH-STANDARD COURSE GRID & CARDS (WITH ADVANCED CAROUSEL-LIKE HOVER) */
+/* HIGH-STANDARD COURSE GRID & CARDS */
 .courses-section {
 background: #f1f5f9;
 }
@@ -492,6 +387,25 @@ height: 220px;
 overflow: hidden;
 background: #e2e8f0;
 position: relative;
+}
+
+/* FLEX DISPLAY FOR COMBO OFFERS MULTIPLE IMAGES */
+.combo-image-flex {
+display: flex;
+width: 100%;
+height: 100%;
+}
+
+.combo-image-flex img {
+flex: 1;
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.combo-image-flex img:last-child {
+border-right: none;
 }
 
 .course-card img{
@@ -831,7 +745,7 @@ max-width: 1200px;
 margin: 0 auto;
 }
 
-/* FLOATING WHATSAPP BUTTON (WITH INFINITE WAVE PULSE ANIMATION) */
+/* FLOATING WHATSAPP BUTTON */
 .whatsapp{
 position:fixed;
 bottom:30px;
@@ -855,7 +769,7 @@ animation: pulseWhatsapp 2s infinite;
 .whatsapp:hover {
 transform: scale(1.1) translateY(-3px);
 box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
-animation: none; /* Stops pulsing on hover */
+animation: none; 
 }
 
 @keyframes pulseWhatsapp {
@@ -870,34 +784,64 @@ animation: none; /* Stops pulsing on hover */
     }
 }
 
-/* RESPONSIVE DESIGN MEDIA QUERIES (UPDATED FOR MAXIMUM MOBILE OPTIMIZATION) */
-@media(max-width:1024px){
+/* RESPONSIVE DESIGN MEDIA QUERIES */
+@media(max-width:1024px) {
 header, header.scrolled { padding: 20px 40px; }
 section { padding: 80px 40px; }
 .about { gap: 40px; }
 }
 
-@media(max-width:768px){
+@media(max-width:768px) {
 header, header.scrolled {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 15px;
-    position: relative; /* Fixed position overlay glitches reduction on small viewports */
+    padding: 15px 20px !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+.menu-toggle {
+    display: flex !important;
 }
 nav {
-    margin-top: 5px;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    position: fixed !important;
+    top: 75px !important; 
+    left: -100% !important;
+    flex-direction: column !important;
+    background: rgba(10, 25, 47, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+    width: 100% !important;
+    height: calc(100vh - 75px) !important;
+    justify-content: flex-start !important;
+    padding-top: 40px !important;
+    gap: 25px !important;
+    transition: left 0.4s ease-in-out !important;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
+    z-index: 9998 !important;
+}
+nav.active {
+    left: 0 !important;
 }
 nav a {
-    margin: 0 10px;
-    font-size: 14px;
+    margin: 0 !important;
+    font-size: 18px !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px 0 !important;
 }
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px) !important;
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0 !important;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px) !important;
+}
+
 .hero {
     height: auto;
     min-height: 100vh;
-    padding: 140px 20px 80px 20px; /* Enhanced space for header on mobile stacking */
+    padding: 140px 20px 80px 20px; 
 }
 .hero-content h1{
     font-size:36px;
@@ -918,19 +862,23 @@ nav a {
     font-size: 16px;
     margin-bottom: 40px;
 }
+.category-title {
+    font-size: 24px;
+    margin: 35px 0 20px 0;
+}
 .about, .contact-box{
     grid-template-columns:1fr;
     gap: 40px;
 }
 .about-img-container::before {
-    display: none; /* Hide decorative corners on mobile layout to maximize real estate */
+    display: none; 
 }
 .about img {
     height: auto;
     max-height: 300px;
 }
 .course-grid {
-    grid-template-columns: 1fr; /* Strict stack layout for single column on mobile portrait viewports */
+    grid-template-columns: 1fr; 
     gap: 25px;
     padding: 0 10px;
 }
@@ -963,10 +911,7 @@ form {
     border-radius: 20px;
 }
 section {
-    padding: 60px 15px; /* Universal padding lock for perfect safe-edges */
-}
-.ad-modal-content {
-    width: 95%;
+    padding: 60px 15px; 
 }
 .whatsapp {
     width: 55px;
@@ -981,18 +926,6 @@ section {
 
 <body>
 
-<div class="ad-modal-overlay" id="admissionModal">
-<div class="ad-modal-content">
-<button class="ad-close-btn" onclick="closeAdModal()">&times;</button>
-<div class="ad-image-wrapper">
-<img src="ad.jpeg" alt="Admission Open Now">
-</div>
-<div class="ad-action-area">
-<button class="ad-enroll-btn" onclick="handleAdEnroll('General Admission Open Popup')">Enroll Now</button>
-</div>
-</div>
-</div>
-
 <header id="main-header">
 <div class="logo-section" onclick="window.scrollTo(0,0)">
 <img src="logo.jpeg" alt="Tectalex Logo">
@@ -1001,12 +934,20 @@ section {
 <p>Learn Today. Lead Tomorrow.</p>
 </div>
 </div>
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#courses">Courses</a>
-<a href="#features">Why Us</a>
-<a href="#contact">Contact</a>
+
+<div class="menu-toggle" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav id="nav-menu">
+<a href="#home" onclick="closeMobileMenu()">Home</a>
+<a href="#about" onclick="closeMobileMenu()">About</a>
+<a href="#courses" onclick="closeMobileMenu()">Courses</a>
+<a href="#offers" onclick="closeMobileMenu()">Offer Price</a>
+<a href="#features" onclick="closeMobileMenu()">Why Us</a>
+<a href="#contact" onclick="closeMobileMenu()">Contact Us</a>
 </nav>
 </header>
 
@@ -1036,280 +977,631 @@ section {
 <section id="courses" class="courses-section">
 <h2 class="section-title" data-aos="fade-up">Our Professional Programs</h2>
 <p class="section-subtitle" data-aos="fade-up">Choose from our wide range of industry-standard professional courses</p>
-<div class="course-grid">
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Foundation</span>
-<div class="course-image-wrapper"><img src="c.jpeg" alt="C Programming"></div>
-<div class="course-details">
-<h3>C Programming</h3>
-<p class="desc">Master the foundations of coding, memory management, and data structures from scratch.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1999</span></div>
-<button onclick="redirectToWhatsApp('C Programming')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+<div style="max-width: 1300px; margin: 0 auto;">
+    
+    <div class="category-title" data-aos="fade-up">Programming Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Foundation</span>
+        <div class="course-image-wrapper"><img src="c.jpeg" alt="C Programming"></div>
+        <div class="course-details">
+        <h3>C Programming</h3>
+        <p class="desc">Master the foundations of coding, memory management, and data structures from scratch.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1999</span></div>
+        <button onclick="redirectToWhatsApp('C Programming')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Core Tech</span>
-<div class="course-image-wrapper"><img src="c++.jpeg" alt="C++ Programming"></div>
-<div class="course-details">
-<h3>C++ Programming</h3>
-<p class="desc">Dive deep into Object-Oriented Programming (OOPs), advanced STL, and system-level applications.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
-<button onclick="redirectToWhatsApp('C++ Programming')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Core Tech</span>
+        <div class="course-image-wrapper"><img src="c++.jpeg" alt="C++ Programming"></div>
+        <div class="course-details">
+        <h3>C++ Programming</h3>
+        <p class="desc">Dive deep into Object-Oriented Programming (OOPs), advanced STL, and system-level applications.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
+        <button onclick="redirectToWhatsApp('C++ Programming')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Most Popular</span>
-<div class="course-image-wrapper"><img src="python.jpeg" alt="Python Programming"></div>
-<div class="course-details">
-<h3>Python Programming</h3>
-<p class="desc">Learn the most versatile programming language covering basic syntax, data types, and scripting.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
-<button onclick="redirectToWhatsApp('Python Programming')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Most Popular</span>
+        <div class="course-image-wrapper"><img src="python.jpeg" alt="Python Programming"></div>
+        <div class="course-details">
+        <h3>Python Programming</h3>
+        <p class="desc">Learn the most versatile programming language covering basic syntax, data types, and scripting.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('Python Programming')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Advanced</span>
-<div class="course-image-wrapper"><img src="adpython.jpeg" alt="Advanced Python"></div>
-<div class="course-details">
-<h3>Advanced Python</h3>
-<p class="desc">Unlock Web Frameworks, Automation, Data Analysis libraries, and complex multi-threading concepts.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
-<button onclick="redirectToWhatsApp('Advanced Python')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Advanced</span>
+        <div class="course-image-wrapper"><img src="adpython.jpeg" alt="Advanced Python"></div>
+        <div class="course-details">
+        <h3>Advanced Python</h3>
+        <p class="desc">Unlock Web Frameworks, Automation, Data Analysis libraries, and complex multi-threading concepts.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Advanced Python')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Data Science</span>
-<div class="course-image-wrapper"><img src="r.jpeg" alt="R Programming"></div>
-<div class="course-details">
-<h3>R Programming</h3>
-<p class="desc">Specialize in statistical computing, data visualization, and predictive modeling for analytics.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
-<button onclick="redirectToWhatsApp('R Programming')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Enterprise</span>
+        <div class="course-image-wrapper"><img src="java.jpeg" alt="Java Programming"></div>
+        <div class="course-details">
+        <h3>Java Programming</h3>
+        <p class="desc">Master robust Object-Oriented Architecture, multithreading, collections framework, and enterprise design patterns.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+        <button onclick="redirectToWhatsApp('Java Programming')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Infrastructure</span>
-<div class="course-image-wrapper"><img src="cc.jpeg" alt="Cloud Computing"></div>
-<div class="course-details">
-<h3>Cloud Computing</h3>
-<p class="desc">Understand architecture, modern cloud services deployment, and infrastructure management.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
-<button onclick="redirectToWhatsApp('Cloud Computing')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+    <div class="category-title" data-aos="fade-up">Data Analytics Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Data Science</span>
+        <div class="course-image-wrapper"><img src="r.jpeg" alt="R Programming"></div>
+        <div class="course-details">
+        <h3>R Programming</h3>
+        <p class="desc">Specialize in statistical computing, data visualization, and predictive modeling for analytics.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+        <button onclick="redirectToWhatsApp('R Programming')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Next Gen AI</span>
-<div class="course-image-wrapper"><img src="promptengineering.jpeg" alt="Prompt Engineering"></div>
-<div class="course-details">
-<h3>Prompt Engineering</h3>
-<p class="desc">Learn to effectively guide GenAI tools and LLMs to generate high-quality enterprise code and content.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
-<button onclick="redirectToWhatsApp('Prompt Engineering')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Data Science</span>
+        <div class="course-image-wrapper"><img src="ds.jpeg" alt="Data Science with Python"></div>
+        <div class="course-details">
+        <h3>Data Science with Python</h3>
+        <p class="desc">Harness Python pipelines for data structural analysis, parsing algorithms, and advanced charting.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+        <button onclick="redirectToWhatsApp('Data Science with Python')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">DevOps Base</span>
-<div class="course-image-wrapper"><img src="github.jpeg" alt="GitHub Deployment"></div>
-<div class="course-details">
-<h3>GitHub Deployment</h3>
-<p class="desc">Master Git version control, branch management workflows, and live hosting strategies via GitHub.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹999</span></div>
-<button onclick="redirectToWhatsApp('GitHub Deployment')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Intelligence</span>
+        <div class="course-image-wrapper"><img src="ml.jpeg" alt="AI and Machine Learning"></div>
+        <div class="course-details">
+        <h3>AI & Machine Learning</h3>
+        <p class="desc">Develop complex predictive logic models, neural graphs, and custom intelligence structures.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
+        <button onclick="redirectToWhatsApp('AI & Machine Learning')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Career Growth</span>
-<div class="course-image-wrapper"><img src="resume.jpeg" alt="Resume Guide"></div>
-<div class="course-details">
-<h3>Resume Creation Guide</h3>
-<p class="desc">Build high-impact, ATS-friendly portfolios and resumes that stand out to tech employers.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹499</span></div>
-<button onclick="redirectToWhatsApp('Resume Creation Guide')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+    <div class="category-title" data-aos="fade-up">Web Development Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Frontend</span>
+        <div class="course-image-wrapper"><img src="react.jpeg" alt="React JS"></div>
+        <div class="course-details">
+        <h3>React JS</h3>
+        <p class="desc">Build premium, high-performance single-page applications using components, hooks, and states.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('React JS')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Professional</span>
-<div class="course-image-wrapper"><img src="documentation.jpeg" alt="Documentation Guide"></div>
-<div class="course-details">
-<h3>Documentation Guide</h3>
-<p class="desc">Learn the professional art of drafting clear software requirement sheets and project documentation.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹799</span></div>
-<button onclick="redirectToWhatsApp('Documentation Guide')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Web Base</span>
+        <div class="course-image-wrapper"><img src="hc.jpeg" alt="HTML and CSS"></div>
+        <div class="course-details">
+        <h3>HTML & CSS</h3>
+        <p class="desc">Learn modern responsive web designing with HTML5 semantic tags, CSS Grid, and Flexbox layers.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
+        <button onclick="redirectToWhatsApp('HTML & CSS')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Live Event</span>
-<div class="course-image-wrapper"><img src="workshops.jpeg" alt="Workshops"></div>
-<div class="course-details">
-<h3>Interactive Workshops</h3>
-<p class="desc">Engage in live technical bootcamps covering the latest industry standards and engineering topics.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1199</span></div>
-<button onclick="redirectToWhatsApp('Interactive Workshops')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Server</span>
+        <div class="course-image-wrapper"><img src="bd.jpeg" alt="Backend Development"></div>
+        <div class="course-details">
+        <h3>Backend Development</h3>
+        <p class="desc">Design robust architectures, database pipelines, structured RESTful APIs, and secure authentication solutions.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
+        <button onclick="redirectToWhatsApp('Backend Development')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">AI Special</span>
-<div class="course-image-wrapper"><img src="ai.jpeg" alt="AI Tools Usage Guide"></div>
-<div class="course-details">
-<h3>AI Tools Usage Guide</h3>
-<p class="desc">Master cutting-edge AI utilities and modern workflows to amplify architectural productivity.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1599</span></div>
-<button onclick="redirectToWhatsApp('AI Tools Usage Guide')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Full Stack</span>
+        <div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Development"></div>
+        <div class="course-details">
+        <h3>Full Stack Development</h3>
+        <p class="desc">End-to-end application development combining interactive frontends with powerful server-side infrastructures.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹5999</span></div>
+        <button onclick="redirectToWhatsApp('Full Stack Development')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Data Science</span>
-<div class="course-image-wrapper"><img src="ds.jpeg" alt="Data Science with Python"></div>
-<div class="course-details">
-<h3>Data Science with Python</h3>
-<p class="desc">Harness Python pipelines for data structural analysis, parsing algorithms, and advanced charting.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
-<button onclick="redirectToWhatsApp('Data Science with Python')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+    <div class="category-title" data-aos="fade-up">Cloud and DevOps Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Infrastructure</span>
+        <div class="course-image-wrapper"><img src="cc.jpeg" alt="Cloud Computing"></div>
+        <div class="course-details">
+        <h3>Cloud Computing</h3>
+        <p class="desc">Understand architecture, modern cloud services deployment, and infrastructure management.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('Cloud Computing')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Intelligence</span>
-<div class="course-image-wrapper"><img src="ml.jpeg" alt="AI and Machine Learning"></div>
-<div class="course-details">
-<h3>AI & Machine Learning</h3>
-<p class="desc">Develop complex predictive logic models, neural graphs, and custom intelligence structures.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
-<button onclick="redirectToWhatsApp('AI & Machine Learning')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">DevOps Base</span>
+        <div class="course-image-wrapper"><img src="github.jpeg" alt="GitHub Deployment"></div>
+        <div class="course-details">
+        <h3>GitHub Deployment</h3>
+        <p class="desc">Master Git version control, branch management workflows, and live hosting strategies via GitHub.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹999</span></div>
+        <button onclick="redirectToWhatsApp('GitHub Deployment')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Innovation</span>
-<div class="course-image-wrapper"><img src="projectideas.jpeg" alt="Project Creation Ideas"></div>
-<div class="course-details">
-<h3>Project Creation Ideas</h3>
-<p class="desc">Turn your theoretical skills into fully functional real-world deployments and enterprise-ready apps.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Mentorship</span><span class="price">Premium</span></div>
-<button onclick="redirectToWhatsApp('Project Creation Ideas / Mentorship')" class="enroll-btn">Explore Ideas</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Cloud Ops</span>
+        <div class="course-image-wrapper"><img src="devops.jpeg" alt="DevOps"></div>
+        <div class="course-details">
+        <h3>DevOps</h3>
+        <p class="desc">Master CI/CD pipelines, containerization with Docker, orchestration, and seamless automation workflows.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4999</span></div>
+        <button onclick="redirectToWhatsApp('DevOps')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Design</span>
-<div class="course-image-wrapper"><img src="ppt.jpeg" alt="PPT Creation Guide"></div>
-<div class="course-details">
-<h3>PPT Creation Guide</h3>
-<p class="desc">Master the art of creating premium corporate presentations and highly engaging pitch decks.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹699</span></div>
-<button onclick="redirectToWhatsApp('PPT Creation Guide')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+    <div class="category-title" data-aos="fade-up">Tools and Productivity Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Next Gen AI</span>
+        <div class="course-image-wrapper"><img src="promptengineering.jpeg" alt="Prompt Engineering"></div>
+        <div class="course-details">
+        <h3>Prompt Engineering</h3>
+        <p class="desc">Learn to effectively guide GenAI tools and LLMs to generate high-quality enterprise code and content.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
+        <button onclick="redirectToWhatsApp('Prompt Engineering')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Frontend</span>
-<div class="course-image-wrapper"><img src="react.jpeg" alt="React JS"></div>
-<div class="course-details">
-<h3>React JS</h3>
-<p class="desc">Build premium, high-performance single-page applications using components, hooks, and states.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
-<button onclick="redirectToWhatsApp('React JS')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">AI Special</span>
+        <div class="course-image-wrapper"><img src="ai.jpeg" alt="AI Tools Usage Guide"></div>
+        <div class="course-details">
+        <h3>AI Tools Usage Guide</h3>
+        <p class="desc">Master cutting-edge AI utilities and modern workflows to amplify architectural productivity.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1599</span></div>
+        <button onclick="redirectToWhatsApp('AI Tools Usage Guide')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Web Base</span>
-<div class="course-image-wrapper"><img src="hc.jpeg" alt="HTML and CSS"></div>
-<div class="course-details">
-<h3>HTML & CSS</h3>
-<p class="desc">Learn modern responsive web designing with HTML5 semantic tags, CSS Grid, and Flexbox layers.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
-<button onclick="redirectToWhatsApp('HTML & CSS')" class="enroll-btn">Enroll Now</button>
 </div>
-</div>
-</div>
+</section>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Server</span>
-<div class="course-image-wrapper"><img src="bd.jpeg" alt="Backend Development"></div>
-<div class="course-details">
-<h3>Backend Development</h3>
-<p class="desc">Design robust architectures, database pipelines, structured RESTful APIs, and secure authentication solutions.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4499</span></div>
-<button onclick="redirectToWhatsApp('Backend Development')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+<section id="offers" class="courses-section" style="background: #f8fafc; border-top: 1px solid #e2e8f0;">
+<h2 class="section-title" data-aos="fade-up">Exclusive Combo Offers</h2>
+<p class="section-subtitle" data-aos="fade-up">Grab our special high-value bundle packages at deeply discounted offer prices</p>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Cloud Ops</span>
-<div class="course-image-wrapper"><img src="devops.jpeg" alt="DevOps"></div>
-<div class="course-details">
-<h3>DevOps</h3>
-<p class="desc">Master CI/CD pipelines, containerization with Docker, orchestration, and seamless automation workflows.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4999</span></div>
-<button onclick="redirectToWhatsApp('DevOps')" class="enroll-btn">Enroll Now</button>
-</div>
-</div>
-</div>
+<div style="max-width: 1300px; margin: 0 auto;">
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Best Bundle</span>
+        <div class="course-image-wrapper">
+            <div class="combo-image-flex">
+                <img src="c.jpeg" alt="C Programming">
+                <img src="c++.jpeg" alt="C++ Programming">
+            </div>
+        </div>
+        <div class="course-details">
+        <h3>C & C++ Programming Combo</h3>
+        <p class="desc">Complete conceptual programming track covering core programming syntax logic up to object-oriented structures.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('C and C++ Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
 
-<div class="course-card" data-aos="fade-up">
-<span class="course-badge">Full Stack</span>
-<div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Development"></div>
-<div class="course-details">
-<h3>Full Stack Development</h3>
-<p class="desc">End-to-end application development combining interactive frontends with powerful server-side infrastructures.</p>
-<div class="course-footer">
-<div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹5999</span></div>
-<button onclick="redirectToWhatsApp('Full Stack Development')" class="enroll-btn">Enroll Now</button>
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Hot Offer</span>
+        <div class="course-image-wrapper">
+            <div class="combo-image-flex">
+                <img src="python.jpeg" alt="Python">
+                <img src="adpython.jpeg" alt="Advanced Python">
+            </div>
+        </div>
+        <div class="course-details">
+        <h3>Python + Advanced Python Combo</h3>
+        <p class="desc">Go from absolute fundamentals to automation scripting, server frameworks, and high-level logic design.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Python + Advanced Python Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Mega Value</span>
+        <div class="course-image-wrapper">
+            <div class="combo-image-flex">
+                <img src="python.jpeg" alt="Python">
+                <img src="adpython.jpeg" alt="Advanced Python">
+                <img src="ds.jpeg" alt="Data Science">
+            </div>
+        </div>
+        <div class="course-details">
+        <h3>Python + Advanced Python + Data Science</h3>
+        <p class="desc">The ultimate corporate data analyst bundle tracking language mastery up to production architecture plotting models.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹5999</span></div>
+        <button onclick="redirectToWhatsApp('Python + Advanced Python + Data Science Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Popular</span>
+        <div class="course-image-wrapper">
+            <div class="combo-image-flex">
+                <img src="java.jpeg" alt="Java">
+                <img src="python.jpeg" alt="Python">
+            </div>
+        </div>
+        <div class="course-details">
+        <h3>Java + Python Combo Offer</h3>
+        <p class="desc">Equip yourself with the two most demanded core engineering development languages in the global market tech workspace.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Java + Python Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Next-Gen Track</span>
+        <div class="course-image-wrapper">
+            <div class="combo-image-flex">
+                <img src="ds.jpeg" alt="Data Science">
+                <img src="ml.jpeg" alt="Machine Learning">
+            </div>
+        </div>
+        <div class="course-details">
+        <h3>Data Science + AI & Machine Learning</h3>
+        <p class="desc">Master complex data metrics, pipeline parsing graphs, neural node layers, and custom analytical systems.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹5499</span></div>
+        <button onclick="redirectToWhatsApp('Data Science + AI and ML Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Career Pack</span>
+        <div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Development"></div>
+        <div class="course-details">
+        <h3>Full Stack Development Combo</h3>
+        <p class="desc">Premium structured end-to-end cloud production architecture suite from dynamic client layouts to database cores.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹5999</span></div>
+        <button onclick="redirectToWhatsApp('Full Stack Development Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">UI/UX Special</span>
+        <div class="course-image-wrapper"><img src="fd.jpeg" alt="Frontend Development"></div>
+        <div class="course-details">
+        <h3>Frontend Development Combo</h3>
+        <p class="desc">Complete responsive dynamic user interactive workspace training balancing client logic workflows.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Frontend Development Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge" style="background: #ef4444; color: white;">Server Pack</span>
+        <div class="course-image-wrapper"><img src="bd.jpeg" alt="Backend Development"></div>
+        <div class="course-details">
+        <h3>Backend Development Combo</h3>
+        <p class="desc">Build advanced restful APIs endpoints tracking secure authorization algorithms structures.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Offer Price</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Backend Development Combo Offer')" class="enroll-btn" style="background: #ef4444;">Claim Offer</button>
+        </div>
+        </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+</section>
+
+<section class="courses-section" style="background: #f1f5f9;">
+<div style="max-width: 1300px; margin: 0 auto;">
+    <div class="category-title" data-aos="fade-up">Workshops</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="python.jpeg" alt="Python Workshop"></div>
+        <div class="course-details">
+        <h3>Python Workshop</h3>
+        <p class="desc">Interactive practical bootcamp focusing on Python logic scripting and core standard libraries.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Python Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="java.jpeg" alt="Java Workshop"></div>
+        <div class="course-details">
+        <h3>Java Workshop</h3>
+        <p class="desc">Hands-on session detailing enterprise Object-Oriented patterns and robust architecture building.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Java Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="cc.jpeg" alt="Cloud Computing Workshop"></div>
+        <div class="course-details">
+        <h3>Cloud Computing Workshop</h3>
+        <p class="desc">Live technical bootcamp covering primary cloud resource configurations and infrastructure networks.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Cloud Computing Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="devops.jpeg" alt="DevOps Workshop"></div>
+        <div class="course-details">
+        <h3>DevOps Workshop</h3>
+        <p class="desc">Accelerated workflow session mapping custom container operations and delivery pipelines.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('DevOps Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Workshop"></div>
+        <div class="course-details">
+        <h3>Full Stack Development Workshop</h3>
+        <p class="desc">Comprehensive lifecycle design linking responsive dynamic clients with database systems.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Full Stack Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="wd.jpeg" alt="Web Development Workshop"></div>
+        <div class="course-details">
+        <h3>Web Development Workshop</h3>
+        <p class="desc">Interactive design framework session handling modern semantic wireframes and element layout layers.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Web Development Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Workshop</span>
+        <div class="course-image-wrapper"><img src="fd.jpeg" alt="Frontend Development Workshop"></div>
+        <div class="course-details">
+        <h3>Frontend Development Workshop</h3>
+        <p class="desc">Focused logic training focusing on high-performance component state rendering and actions.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Fee</span><span class="price">₹1199</span></div>
+        <button onclick="redirectToWhatsApp('Frontend Development Workshop')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="category-title" data-aos="fade-up">Internships</div>
+    <div class="course-grid" style="margin-bottom: 50px;">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="python.jpeg" alt="Python Internship"></div>
+        <div class="course-details">
+        <h3>Python Internship</h3>
+        <p class="desc">Industry-oriented internship program working on production-level Python scripting and data modules.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Python Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="java.jpeg" alt="Java Internship"></div>
+        <div class="course-details">
+        <h3>Java Internship</h3>
+        <p class="desc">Gain corporate experience building enterprise architecture, multi-threading models, and business logic.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Java Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="cc.jpeg" alt="Cloud Computing Internship"></div>
+        <div class="course-details">
+        <h3>Cloud Computing Internship</h3>
+        <p class="desc">Hands-on cloud cluster orchestration tracker managing security matrix systems and active server logs.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Cloud Computing Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="devops.jpeg" alt="DevOps Internship"></div>
+        <div class="course-details">
+        <h3>DevOps Internship</h3>
+        <p class="desc">Work directly with enterprise delivery tools deploying automation structures and container branches.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('DevOps Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="fs.jpeg" alt="Full Stack Internship"></div>
+        <div class="course-details">
+        <h3>Full Stack Development Internship</h3>
+        <p class="desc">Develop complete end-to-end cloud products connecting interface views with secure database cores.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Full Stack Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="wd.jpeg" alt="Web Development Internship"></div>
+        <div class="course-details">
+        <h3>Web Development Internship</h3>
+        <p class="desc">Master cross-browser layout standard structures, vector responsive rendering, and stylesheet frameworks.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Web Development Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Internship</span>
+        <div class="course-image-wrapper"><img src="fd.jpeg" alt="Frontend Development Internship"></div>
+        <div class="course-details">
+        <h3>Frontend Development Internship</h3>
+        <p class="desc">Practical workspace focus dealing directly with asynchronous clients, state systems, and interface layers.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Program Track</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Frontend Development Internship')" class="enroll-btn">Apply Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="category-title" data-aos="fade-up">Documentation, Resume, PPT & Project Creation Guides</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Professional</span>
+        <div class="course-image-wrapper"><img src="documentation.jpeg" alt="Documentation Guide"></div>
+        <div class="course-details">
+        <h3>Documentation Guide</h3>
+        <p class="desc">Learn the professional art of drafting clear software requirement sheets and project documentation.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹799</span></div>
+        <button onclick="redirectToWhatsApp('Documentation Guide')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Career Growth</span>
+        <div class="course-image-wrapper"><img src="resume.jpeg" alt="Resume Guide"></div>
+        <div class="course-details">
+        <h3>Resume Creation Guide</h3>
+        <p class="desc">Build high-impact, ATS-friendly portfolios and resumes that stand out to tech employers.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹499</span></div>
+        <button onclick="redirectToWhatsApp('Resume Creation Guide')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Design</span>
+        <div class="course-image-wrapper"><img src="ppt.jpeg" alt="PPT Creation Guide"></div>
+        <div class="course-details">
+        <h3>PPT Creation Guide</h3>
+        <p class="desc">Master the art of creating premium corporate presentations and highly engaging pitch decks.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹699</span></div>
+        <button onclick="redirectToWhatsApp('PPT Creation Guide')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Innovation</span>
+        <div class="course-image-wrapper"><img src="projectideas.jpeg" alt="Project Creation Ideas"></div>
+        <div class="course-details">
+        <h3>Project Creation Ideas</h3>
+        <p class="desc">Turn your theoretical skills into fully functional real-world deployments and enterprise-ready apps.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Mentorship</span><span class="price">Premium</span></div>
+        <button onclick="redirectToWhatsApp('Project Creation Ideas / Mentorship')" class="enroll-btn">Explore Ideas</button>
+        </div>
+        </div>
+        </div>
+    </div>
 
 </div>
 </section>
@@ -1379,26 +1671,49 @@ AOS.init({
     offset: 120
 });
 
-// ADMISSION POPUP MANAGEMENT SCRIPT
-window.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        document.getElementById("admissionModal").classList.add("show");
-    }, 800); 
+// RESPONSIVE MOBILE MENU INTERACTION LOGIC
+function toggleMobileMenu() {
+    const navMenu = document.getElementById("nav-menu");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    
+    if(navMenu && menuBtn) {
+        navMenu.classList.toggle("active");
+        menuBtn.classList.toggle("active");
+    }
+}
+
+function closeMobileMenu() {
+    const navMenu = document.getElementById("nav-menu");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    
+    if(navMenu && menuBtn) {
+        navMenu.classList.remove("active");
+        menuBtn.classList.remove("active");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    if(menuBtn) {
+        menuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    }
+    
+    document.addEventListener("click", (e) => {
+        const navMenu = document.getElementById("nav-menu");
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        if(navMenu && navMenu.classList.contains("active") && !navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
 });
-
-function closeAdModal() {
-    document.getElementById("admissionModal").classList.remove("show");
-}
-
-function handleAdEnroll(popupName) {
-    closeAdModal();
-    redirectToWhatsApp(popupName);
-}
 
 // WHATSAPP REDIRECTION FUNCTION FOR ENROLL BUTTONS
 function redirectToWhatsApp(courseName) {
     const phoneNumber = "918124220527";
-    const textMessage = `Hi Tectalex Academy, I am interested in enrolling for the "${courseName}" course. Please provide me with more details.`;
+    const textMessage = `Hi Tectalex Academy, I am interested in enrolling for the "${courseName}" program. Please provide me with more details.`;
     const encodedMessage = encodeURIComponent(textMessage);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
@@ -1433,7 +1748,7 @@ window.addEventListener("scroll",()=>{
     }
 });
 
-// PREMIUM SMOOTH SLIDESHOW SCRIPT FOR HERO BACKGROUND
+// HERO BACKGROUND SLIDESHOW LOGIC
 const heroSection = document.getElementById("home");
 let currentImgNumber = 1;
 const totalImages = 16;
@@ -1444,10 +1759,11 @@ setInterval(() => {
     if (currentImgNumber > totalImages) {
         currentImgNumber = 1; 
     }
-    
-    heroSection.style.background = `linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img${currentImgNumber}.jpeg')`;
-    heroSection.style.backgroundSize = "cover";
-    heroSection.style.backgroundPosition = "center";
+    if(heroSection) {
+        heroSection.style.background = `linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img${currentImgNumber}.jpeg')`;
+        heroSection.style.backgroundSize = "cover";
+        heroSection.style.backgroundPosition = "center";
+    }
 }, changeInterval);
 </script>
 
