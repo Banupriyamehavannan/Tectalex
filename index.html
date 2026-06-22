@@ -4,7 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tectalex Academy & Digital Solutions</title>
+<!-- Open Graph / Facebook / WhatsApp Preview Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tectalex.in/">
+<meta property="og:title" content="Tectalex Academy & Digital Solutions">
+<meta property="og:description" content="Premium Training • Course Certification • Hands-on Projects. Learn Today. Lead Tomorrow.">
+<meta property="og:image" content="https://tectalex.in/logo.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
+<!-- Twitter / X Preview Meta Tags -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://tectalex.in/">
+<meta property="twitter:title" content="Tectalex Academy & Digital Solutions">
+<meta property="twitter:description" content="Premium Training • Course Certification • Hands-on Projects.">
+<meta property="twitter:image" content="https://tectalex.in/logo.jpeg">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -541,6 +555,14 @@ height: 400px;
 background: rgba(16, 185, 129, 0.05);
 border-radius: 50%;
 filter: blur(80px);
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:35px;
+max-width: 1300px;
+margin: 0 auto;
 }
 
 .feature-grid{
@@ -1214,6 +1236,36 @@ section {
         <div class="course-footer">
         <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹4999</span></div>
         <button onclick="redirectToWhatsApp('DevOps')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- NEW SECTION ADDED: MARKETING AND PRODUCTIVITY -->
+    <div class="category-title" data-aos="fade-up">Marketing and Productivity Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Growth</span>
+        <div class="course-image-wrapper"><img src="dm.jpeg" alt="Digital Marketing"></div>
+        <div class="course-details">
+        <h3>Digital Marketing</h3>
+        <p class="desc">Master SEO, Social Media Marketing, PPC campaigns, and analytics tools to grow brand visibility online.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
+        <button onclick="redirectToWhatsApp('Digital Marketing')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Productivity</span>
+        <div class="course-image-wrapper"><img src="office365.jpeg" alt="Office 365"></div>
+        <div class="course-details">
+        <h3>Office 365 Suite</h3>
+        <p class="desc">Deep dive into Word, Advanced Excel formulas, PowerPoint, Teams, and cloud automation workflows.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1499</span></div>
+        <button onclick="redirectToWhatsApp('Office 365')" class="enroll-btn">Enroll Now</button>
         </div>
         </div>
         </div>
