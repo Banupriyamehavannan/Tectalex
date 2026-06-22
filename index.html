@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tectalex Academy & Digital Solutions</title>
-<!-- Open Graph / Facebook / WhatsApp Preview Meta Tags -->
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tectalex.in/">
 <meta property="og:title" content="Tectalex Academy & Digital Solutions">
@@ -12,8 +12,6 @@
 <meta property="og:image" content="https://tectalex.in/logo.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
-<!-- Twitter / X Preview Meta Tags -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://tectalex.in/">
 <meta property="twitter:title" content="Tectalex Academy & Digital Solutions">
@@ -49,7 +47,6 @@ color: var(--text-main);
 -webkit-font-smoothing: antialiased;
 }
 
-/* NAVIGATION HEADER (GLASSMORPHISM WITH SLICK TRANSITIONS) */
 header{
 position:fixed;
 top:0;
@@ -145,8 +142,6 @@ transform: translateX(-50%);
 nav a:hover::after {
 width: 100%;
 }
-
-/* FIXED EXPLICIT MOBILE HAMBURGER ICON ALIGNMENT OVERRIDES */
 .menu-toggle {
 display: none;
 flex-direction: column;
@@ -169,7 +164,6 @@ border-radius: 4px;
 transition: all 0.3s ease-in-out;
 }
 
-/* PREMIUM HERO SECTION WITH CINEMATIC FADE-IN ANIMATIONS */
 .hero{
 height:100vh;
 background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img1.jpeg');
@@ -252,7 +246,6 @@ box-shadow: 0 20px 35px rgba(255,255,255,0.3);
     }
 }
 
-/* SECTIONS BASE STYLING */
 section{
 padding:120px 80px;
 position: relative;
@@ -289,7 +282,6 @@ font-weight: 700;
 letter-spacing: -0.3px;
 }
 
-/* CORPORATE ABOUT SECTION WITH HOVER MOTION */
 .about{
 display:grid;
 grid-template-columns: 1.1fr 0.9fr;
@@ -365,7 +357,6 @@ transition: border-color 0.3s;
     border-color: var(--primary);
 }
 
-/* HIGH-STANDARD COURSE GRID & CARDS */
 .courses-section {
 background: #f1f5f9;
 }
@@ -404,7 +395,6 @@ background: #e2e8f0;
 position: relative;
 }
 
-/* FLEX DISPLAY FOR COMBO OFFERS MULTIPLE IMAGES */
 .combo-image-flex {
 display: flex;
 width: 100%;
@@ -538,7 +528,6 @@ transform: translateY(-2px);
 box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
 }
 
-/* PREMIUM WHY CHOOSE US SECTION */
 .features{
 background: var(--primary);
 color:white;
@@ -607,7 +596,6 @@ font-size: 15px;
 line-height: 1.6;
 }
 
-/* CORPORATE CONTACT SECTION */
 .contact{
 background: var(--card-bg);
 }
@@ -713,7 +701,6 @@ transform: translateY(-2px);
 box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
 }
 
-/* FOOTER SECTION */
 footer{
 background: #050b14;
 color:white;
@@ -759,7 +746,6 @@ font-size: 16px;
 margin-bottom: 30px;
 }
 
-/* SOCIAL ICONS PACK STYLING */
 .footer-socials {
 display: flex;
 justify-content: center;
@@ -799,7 +785,6 @@ max-width: 1200px;
 margin: 0 auto;
 }
 
-/* FLOATING WHATSAPP BUTTON */
 .whatsapp{
 position:fixed;
 bottom:30px;
@@ -838,7 +823,6 @@ animation: none;
     }
 }
 
-/* RESPONSIVE DESIGN MEDIA QUERIES */
 @media(max-width:1024px) {
 header, header.scrolled { padding: 20px 40px; }
 section { padding: 80px 40px; }
@@ -1241,7 +1225,6 @@ section {
         </div>
     </div>
 
-    <!-- NEW SECTION ADDED: MARKETING AND PRODUCTIVITY -->
     <div class="category-title" data-aos="fade-up">Marketing and Productivity Courses</div>
     <div class="course-grid">
         <div class="course-card" data-aos="fade-up">
@@ -1755,7 +1738,6 @@ section {
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
-// INITIALIZE ANIMATION ON SCROLL LIBRARY
 AOS.init({
     duration: 800,
     easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
@@ -1763,7 +1745,6 @@ AOS.init({
     offset: 120
 });
 
-// RESPONSIVE MOBILE MENU INTERACTION LOGIC
 function toggleMobileMenu() {
     const navMenu = document.getElementById("nav-menu");
     const menuBtn = document.getElementById("mobile-menu-btn");
@@ -1802,7 +1783,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// WHATSAPP REDIRECTION FUNCTION FOR ENROLL BUTTONS
 function redirectToWhatsApp(courseName) {
     const phoneNumber = "918124220527";
     const textMessage = `Hi Tectalex Academy, I am interested in enrolling for the "${courseName}" program. Please provide me with more details.`;
@@ -1811,7 +1791,6 @@ function redirectToWhatsApp(courseName) {
     window.open(whatsappURL, '_blank');
 }
 
-// WHATSAPP CONTACT FORM DISPATCHER
 function sendContactToWhatsApp(event) {
     event.preventDefault();
     const phoneNumber = "918124220527";
@@ -1830,7 +1809,6 @@ function sendContactToWhatsApp(event) {
     window.open(whatsappFormURL, '_blank');
 }
 
-// SCROLL EFFECT FOR HEADER ADJUSTMENT
 window.addEventListener("scroll",()=>{
     const header = document.getElementById("main-header");
     if(window.scrollY > 50){
@@ -1840,7 +1818,6 @@ window.addEventListener("scroll",()=>{
     }
 });
 
-// HERO BACKGROUND SLIDESHOW LOGIC
 const heroSection = document.getElementById("home");
 let currentImgNumber = 1;
 const totalImages = 16;
