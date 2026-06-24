@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tectalex Academy & Digital Solutions</title>
+<!-- Browser Tab Favicon Icon -->
 <link rel="icon" type="image/jpeg" href="logo.jpeg">
+<!-- Open Graph / Facebook / WhatsApp Preview Meta Tags -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tectalex.in/">
 <meta property="og:title" content="Tectalex Academy & Digital Solutions">
@@ -12,6 +14,8 @@
 <meta property="og:image" content="https://tectalex.in/logo.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<!-- Twitter / X Preview Meta Tags -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://tectalex.in/">
 <meta property="twitter:title" content="Tectalex Academy & Digital Solutions">
@@ -47,6 +51,7 @@ color: var(--text-main);
 -webkit-font-smoothing: antialiased;
 }
 
+/* NAVIGATION HEADER (GLASSMORPHISM WITH SLICK TRANSITIONS) */
 header{
 position:fixed;
 top:0;
@@ -142,6 +147,8 @@ transform: translateX(-50%);
 nav a:hover::after {
 width: 100%;
 }
+
+/* FIXED EXPLICIT MOBILE HAMBURGER ICON ALIGNMENT OVERRIDES */
 .menu-toggle {
 display: none;
 flex-direction: column;
@@ -164,6 +171,7 @@ border-radius: 4px;
 transition: all 0.3s ease-in-out;
 }
 
+/* PREMIUM HERO SECTION WITH CINEMATIC FADE-IN ANIMATIONS */
 .hero{
 height:100vh;
 background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img1.jpeg');
@@ -177,6 +185,42 @@ color:white;
 padding:20px;
 transition: background 1.5s ease-in-out;
 position: relative;
+overflow: hidden;
+isolation: isolate;
+}
+
+.hero-bg-layer {
+position: absolute;
+inset: 0;
+background-size: cover;
+background-position: center;
+opacity: 0;
+transform: scale(1.04);
+transition: opacity 1.2s ease, transform 6s ease;
+z-index: 0;
+will-change: opacity, transform;
+}
+
+.hero-bg-layer.visible {
+opacity: 1;
+transform: scale(1.1);
+}
+
+.hero::before {
+content: '';
+position: absolute;
+inset: 0;
+background:
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.08) 42%, transparent 58%),
+    radial-gradient(circle at 20% 30%, rgba(16,185,129,0.18), transparent 32%),
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+background-size: 180% 180%, 100% 100%, 72px 72px, 72px 72px;
+mix-blend-mode: screen;
+opacity: 0.45;
+animation: heroTextureMove 16s ease-in-out infinite alternate;
+pointer-events: none;
+z-index: 1;
 }
 
 .hero::after {
@@ -187,11 +231,16 @@ left: 0;
 width: 100%;
 height: 100px;
 background: linear-gradient(to top, var(--bg-light), transparent);
+pointer-events: none;
+z-index: 1;
 }
 
 .hero-content {
 max-width: 900px;
 z-index: 2;
+position: relative;
+transition: transform 0.35s ease-out;
+will-change: transform;
 }
 
 .hero-content h1{
@@ -201,7 +250,8 @@ font-weight: 800;
 line-height: 1.15;
 letter-spacing: -1px;
 text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+opacity: 0;
+animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.15s forwards;
 }
 
 .hero-content p{
@@ -210,7 +260,8 @@ margin-bottom:40px;
 color: #f1f5f9;
 font-weight: 400;
 letter-spacing: 0.5px;
-animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+opacity: 0;
+animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.35s forwards;
 }
 
 .hero-content button{
@@ -226,7 +277,26 @@ text-transform: uppercase;
 letter-spacing: 1px;
 box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-animation: fadeInUp 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+opacity: 0;
+position: relative;
+overflow: hidden;
+animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.55s forwards, buttonBreath 3.8s ease-in-out 2s infinite;
+}
+
+.hero-content button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -80%;
+width: 55%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+transform: skewX(-18deg);
+transition: left 0.75s ease;
+}
+
+.hero-content button:hover::before {
+left: 125%;
 }
 
 .hero-content button:hover{
@@ -246,6 +316,25 @@ box-shadow: 0 20px 35px rgba(255,255,255,0.3);
     }
 }
 
+@keyframes heroTextureMove {
+    from {
+        background-position: 0% 50%, center, 0 0, 0 0;
+    }
+    to {
+        background-position: 100% 50%, center, 36px 24px, 36px 24px;
+    }
+}
+
+@keyframes buttonBreath {
+    0%, 100% {
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        box-shadow: 0 16px 34px rgba(16, 185, 129, 0.58);
+    }
+}
+
+/* SECTIONS BASE STYLING */
 section{
 padding:120px 80px;
 position: relative;
@@ -280,8 +369,22 @@ border-bottom: 3px solid var(--accent);
 display: inline-block;
 font-weight: 700;
 letter-spacing: -0.3px;
+position: relative;
+overflow: hidden;
 }
 
+.category-title::after {
+content: '';
+position: absolute;
+bottom: -3px;
+left: -40%;
+width: 40%;
+height: 3px;
+background: white;
+animation: titleLineSweep 3.5s ease-in-out infinite;
+}
+
+/* CORPORATE ABOUT SECTION WITH HOVER MOTION */
 .about{
 display:grid;
 grid-template-columns: 1.1fr 0.9fr;
@@ -357,6 +460,7 @@ transition: border-color 0.3s;
     border-color: var(--primary);
 }
 
+/* HIGH-STANDARD COURSE GRID & CARDS */
 .courses-section {
 background: #f1f5f9;
 }
@@ -374,17 +478,33 @@ background: var(--card-bg);
 border-radius:24px;
 overflow: hidden;
 box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: transform 0.45s cubic-bezier(0.2, 0.85, 0.25, 1), box-shadow 0.45s ease, border-color 0.45s ease;
 display: flex;
 flex-direction: column;
 border: 1px solid rgba(226, 232, 240, 0.8);
 position: relative;
+will-change: transform;
+}
+
+.course-card::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(16,185,129,0.16), transparent 34%, transparent 68%, rgba(10,25,47,0.08));
+opacity: 0;
+transition: opacity 0.45s ease;
+pointer-events: none;
+z-index: 1;
 }
 
 .course-card:hover{
 transform:translateY(-12px);
 box-shadow: 0 30px 60px -15px rgba(10,25,47,0.18);
 border-color: rgba(16, 185, 129, 0.4);
+}
+
+.course-card:hover::before {
+opacity: 1;
 }
 
 .course-image-wrapper {
@@ -395,6 +515,24 @@ background: #e2e8f0;
 position: relative;
 }
 
+.course-image-wrapper::after {
+content: '';
+position: absolute;
+top: 0;
+left: -80%;
+width: 55%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+transform: skewX(-18deg);
+transition: left 0.85s ease;
+z-index: 1;
+}
+
+.course-card:hover .course-image-wrapper::after {
+left: 125%;
+}
+
+/* FLEX DISPLAY FOR COMBO OFFERS MULTIPLE IMAGES */
 .combo-image-flex {
 display: flex;
 width: 100%;
@@ -453,6 +591,8 @@ padding: 30px;
 display: flex;
 flex-direction: column;
 flex-grow: 1;
+position: relative;
+z-index: 2;
 }
 
 .course-card h3{
@@ -519,6 +659,21 @@ font-size: 14px;
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 border: 1px solid transparent;
 cursor: pointer;
+position: relative;
+overflow: hidden;
+z-index: 0;
+}
+
+.enroll-btn::before,
+form button::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+transform: translateX(-120%) skewX(-18deg);
+transition: transform 0.65s ease;
+pointer-events: none;
+z-index: 1;
 }
 
 .enroll-btn:hover {
@@ -528,6 +683,12 @@ transform: translateY(-2px);
 box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
 }
 
+.enroll-btn:hover::before,
+form button:hover::before {
+transform: translateX(120%) skewX(-18deg);
+}
+
+/* PREMIUM WHY CHOOSE US SECTION */
 .features{
 background: var(--primary);
 color:white;
@@ -569,6 +730,17 @@ border-radius: 24px;
 text-align: center;
 border: 1px solid rgba(255, 255, 255, 0.05);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+}
+
+.feature-box::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(16,185,129,0.14), transparent 45%);
+opacity: 0;
+transition: opacity 0.35s ease;
 }
 
 .feature-box:hover {
@@ -576,6 +748,16 @@ background: rgba(255, 255, 255, 0.07);
 transform: translateY(-10px);
 border-color: rgba(16, 185, 129, 0.4);
 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-box:hover::before {
+opacity: 1;
+}
+
+.feature-box h3,
+.feature-box p {
+position: relative;
+z-index: 1;
 }
 
 .feature-box h3{
@@ -596,6 +778,7 @@ font-size: 15px;
 line-height: 1.6;
 }
 
+/* CORPORATE CONTACT SECTION */
 .contact{
 background: var(--card-bg);
 }
@@ -692,6 +875,9 @@ font-weight: 600;
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 width: 100%;
 letter-spacing: 0.5px;
+position: relative;
+overflow: hidden;
+z-index: 0;
 }
 
 form button:hover {
@@ -701,6 +887,7 @@ transform: translateY(-2px);
 box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
 }
 
+/* FOOTER SECTION */
 footer{
 background: #050b14;
 color:white;
@@ -729,7 +916,7 @@ border: 2px solid rgba(255,255,255,0.1);
 transition: transform 0.5s ease;
 }
 
-footer id:hover img {
+footer:hover img {
     transform: scale(1.05) rotate(360deg);
 }
 
@@ -746,6 +933,7 @@ font-size: 16px;
 margin-bottom: 30px;
 }
 
+/* SOCIAL ICONS PACK STYLING */
 .footer-socials {
 display: flex;
 justify-content: center;
@@ -785,6 +973,7 @@ max-width: 1200px;
 margin: 0 auto;
 }
 
+/* FLOATING WHATSAPP BUTTON */
 .whatsapp{
 position:fixed;
 bottom:30px;
@@ -823,6 +1012,44 @@ animation: none;
     }
 }
 
+@keyframes titleLineSweep {
+    0%, 35% {
+        left: -45%;
+    }
+    65%, 100% {
+        left: 105%;
+    }
+}
+
+.reveal-up {
+opacity: 0;
+transform: translateY(26px);
+transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.2, 0.85, 0.25, 1);
+transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-up.in-view {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .reveal-up {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* RESPONSIVE DESIGN MEDIA QUERIES */
 @media(max-width:1024px) {
 header, header.scrolled { padding: 20px 40px; }
 section { padding: 80px 40px; }
@@ -838,6 +1065,8 @@ header, header.scrolled {
 }
 .menu-toggle {
     display: flex !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 nav {
     position: fixed !important;
@@ -959,10 +1188,167 @@ section {
     font-size: 26px;
 }
 }
+
+/* ===== CUSTOM CURSOR ===== */
+#cursor-dot {
+position: fixed;
+top: 0; left: 0;
+width: 8px; height: 8px;
+background: #10b981;
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999999;
+transform: translate(-50%, -50%);
+transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+will-change: left, top;
+box-shadow: 0 0 10px rgba(16,185,129,0.8), 0 0 20px rgba(16,185,129,0.4);
+opacity: 0;
+}
+#cursor-ring {
+position: fixed;
+top: 0; left: 0;
+width: 36px; height: 36px;
+border: 2px solid rgba(16,185,129,0.5);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999998;
+transform: translate(-50%, -50%);
+transition: width 0.35s cubic-bezier(0.25,1,0.5,1), height 0.35s cubic-bezier(0.25,1,0.5,1), border-color 0.35s ease;
+will-change: left, top;
+opacity: 0;
+}
+#cursor-trail-canvas {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 9999997;
+}
+body.cur-active #cursor-dot,
+body.cur-active #cursor-ring { opacity: 1; }
+body.cur-hover #cursor-dot {
+width: 14px; height: 14px;
+background: #34d399;
+box-shadow: 0 0 18px rgba(16,185,129,1), 0 0 35px rgba(16,185,129,0.5);
+}
+body.cur-hover #cursor-ring {
+width: 56px; height: 56px;
+border-color: rgba(16,185,129,0.35);
+}
+body.cur-click #cursor-dot { width: 5px; height: 5px; background: #fff; }
+body.cur-click #cursor-ring { width: 22px; height: 22px; border-color: rgba(255,255,255,0.8); }
+
+/* ===== SCROLL PROGRESS ===== */
+#scroll-progress {
+position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+background: linear-gradient(90deg, #10b981, #34d399, #06b6d4);
+z-index: 9999990; transition: width 0.1s linear;
+}
+
+/* ===== BACK TO TOP ===== */
+#back-to-top {
+position: fixed; bottom: 110px; right: 30px;
+width: 48px; height: 48px;
+background: var(--primary);
+border: 1px solid rgba(16,185,129,0.4);
+border-radius: 50%;
+display: flex; justify-content: center; align-items: center;
+font-size: 20px; color: var(--accent);
+z-index: 998; opacity: 0;
+transform: translateY(20px);
+transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+text-decoration: none;
+}
+#back-to-top.visible { opacity: 1; transform: translateY(0); }
+#back-to-top:hover { background: var(--accent); color: var(--primary); transform: translateY(-3px); }
+
+/* ===== PAGE LOADER ===== */
+#page-loader {
+position: fixed; inset: 0; background: var(--primary);
+z-index: 9999995; display: flex; flex-direction: column;
+justify-content: center; align-items: center; gap: 20px;
+transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-logo { font-size: 28px; font-weight: 900; color: white; letter-spacing: 3px; }
+.loader-bar-track { width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.loader-bar-fill { height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4); border-radius: 3px; animation: loaderFill 1.2s ease forwards; }
+@keyframes loaderFill { from { width: 0% } to { width: 100% } }
+
+/* ===== STATS BAND ===== */
+.stats-band {
+background: var(--primary); padding: 60px 80px;
+display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+border-top: 1px solid rgba(255,255,255,0.04);
+border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.stat-item { text-align: center; padding: 20px 60px; position: relative; flex: 1; min-width: 180px; }
+.stat-item:not(:last-child)::after {
+content: ''; position: absolute; right: 0; top: 20%;
+height: 60%; width: 1px; background: rgba(255,255,255,0.1);
+}
+.stat-number { font-size: 52px; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -2px; display: block; }
+.stat-label { font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; display: block; font-weight: 600; }
+
+/* ===== GRADIENT TITLES ===== */
+.gradient-title {
+background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 50%, #10b981 100%);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.features .gradient-title {
+background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #10b981 100%);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ===== HERO EXTRAS ===== */
+#hero-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; width: 100%; height: 100%; }
+.typewriter-cursor {
+display: inline-block; width: 3px; height: 0.85em;
+background: #10b981; margin-left: 4px; vertical-align: middle;
+animation: tblink 0.85s step-end infinite; border-radius: 2px;
+}
+@keyframes tblink { 0%,100%{opacity:1} 50%{opacity:0} }
+.hero-badge {
+display: inline-block; background: rgba(16,185,129,0.15);
+border: 1px solid rgba(16,185,129,0.4); color: #10b981;
+font-size: 13px; font-weight: 700; letter-spacing: 2px;
+text-transform: uppercase; padding: 8px 22px; border-radius: 50px;
+margin-bottom: 28px; opacity: 0;
+animation: fadeInUp 0.8s cubic-bezier(0.25,1,0.5,1) 0s forwards;
+backdrop-filter: blur(4px);
+}
+.scroll-indicator {
+position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px;
+opacity: 0; animation: fadeInUp 1s ease 1.5s forwards;
+}
+.scroll-indicator span { color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+.scroll-mouse { width: 22px; height: 36px; border: 2px solid rgba(255,255,255,0.3); border-radius: 12px; display: flex; justify-content: center; padding-top: 5px; }
+.scroll-mouse::before { content: ''; width: 3px; height: 8px; background: #10b981; border-radius: 2px; animation: sdot 1.8s ease-in-out infinite; }
+@keyframes sdot { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(12px);opacity:0} }
+
+/* ===== FEATURE ICONS ===== */
+.feature-icon { font-size: 36px; margin-bottom: 20px; display: block; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+.feature-box:hover .feature-icon { transform: scale(1.2) translateY(-4px); }
+
+@media(max-width:768px) {
+.stats-band { padding: 40px 20px; }
+.stat-item { padding: 15px 25px; min-width: 140px; }
+.stat-number { font-size: 38px; }
+#back-to-top { bottom: 90px; right: 20px; }
+}
+@media (hover: none) {
+#cursor-dot, #cursor-ring, #cursor-trail-canvas { display: none !important; }
+}
 </style>
 </head>
 
 <body>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="cursor-trail-canvas"></canvas>
+<div id="page-loader"><div class="loader-logo">TECTALEX</div><div class="loader-bar-track"><div class="loader-bar-fill"></div></div></div>
+<div id="scroll-progress"></div>
+<a id="back-to-top" href="#home">↑</a>
 
 <header id="main-header">
 <div class="logo-section" onclick="window.scrollTo(0,0)">
@@ -990,15 +1376,25 @@ section {
 </header>
 
 <section class="hero" id="home">
+<canvas id="hero-canvas"></canvas>
 <div class="hero-content">
-<h1>Transforming Knowledge<br>Into Expertise</h1>
+<div class="hero-badge">🎓 India's Premier Tech Academy</div>
+<h1><span id="typewriter-text"></span><span class="typewriter-cursor"></span></h1>
 <p>Premium Training • Course Certification • Hands-on Projects</p>
 <button onclick="document.getElementById('courses').scrollIntoView()">Explore Courses</button>
 </div>
+<div class="scroll-indicator"><div class="scroll-mouse"></div><span>Scroll</span></div>
 </section>
 
+<div class="stats-band">
+  <div class="stat-item"><span class="stat-number" data-target="500" data-suffix="+">0</span><span class="stat-label">Students Trained</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="20" data-suffix="+">0</span><span class="stat-label">Expert Courses</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="98" data-suffix="%">0</span><span class="stat-label">Satisfaction Rate</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="5" data-suffix="★">0</span><span class="stat-label">Course Rating</span></div>
+</div>
+
 <section id="about" data-aos="fade-up">
-<h2 class="section-title">About Tectalex Academy</h2>
+<h2 class="section-title gradient-title">About Tectalex Academy</h2>
 <p class="section-subtitle">Building the next generation of global tech leaders</p>
 <div class="about">
 <div class="about-img-container" data-aos="fade-right">
@@ -1013,7 +1409,7 @@ section {
 </section>
 
 <section id="courses" class="courses-section">
-<h2 class="section-title" data-aos="fade-up">Our Professional Programs</h2>
+<h2 class="section-title gradient-title" data-aos="fade-up">Our Professional Programs</h2>
 <p class="section-subtitle" data-aos="fade-up">Choose from our wide range of industry-standard professional courses</p>
 
 <div style="max-width: 1300px; margin: 0 auto;">
@@ -1225,6 +1621,7 @@ section {
         </div>
     </div>
 
+    <!-- NEW SECTION ADDED: MARKETING AND PRODUCTIVITY -->
     <div class="category-title" data-aos="fade-up">Marketing and Productivity Courses</div>
     <div class="course-grid">
         <div class="course-card" data-aos="fade-up">
@@ -1674,22 +2071,26 @@ section {
 </section>
 
 <section class="features" id="features">
-<h2 class="section-title" style="color:white" data-aos="fade-up">Why Choose Tectalex?</h2>
+<h2 class="section-title gradient-title" style="color:white" data-aos="fade-up">Why Choose Tectalex?</h2>
 <p class="section-subtitle" style="color:#94a3b8" data-aos="fade-up">What sets our professional academy apart from the rest</p>
 <div class="feature-grid">
 <div class="feature-box" data-aos="zoom-in" data-aos-delay="100">
+<span class="feature-icon">🏆</span>
 <h3>Expert Trainers</h3>
 <p>Learn from certified industry professionals with years of active global tech experience.</p>
 </div>
 <div class="feature-box" data-aos="zoom-in" data-aos-delay="200">
+<span class="feature-icon">🚀</span>
 <h3>Live Projects</h3>
 <p>Get hands-on expertise by working on real-world application building and deployments.</p>
 </div>
 <div class="feature-box" data-aos="zoom-in" data-aos-delay="300">
+<span class="feature-icon">📚</span>
 <h3>Comprehensive Material</h3>
 <p>Access carefully curated resource guides, verified code documentation, and assignments.</p>
 </div>
 <div class="feature-box" data-aos="zoom-in" data-aos-delay="400">
+<span class="feature-icon">🎓</span>
 <h3>Course Certification</h3>
 <p>Receive a verified, shareable completion certificate to showcase your skills and resume.</p>
 </div>
@@ -1703,7 +2104,7 @@ section {
 <div class="contact-info" data-aos="fade-right">
 <h3>Contact Information</h3>
 <div class="contact-card-item">
-<p><b>Phone Support</b>8124220527</p>
+<p><b>Phone Support</b>8124220527 | 9751052721</p>
 </div>
 <div class="contact-card-item">
 <p><b>Official Email</b>tectalexacademy@gmail.com</p>
@@ -1736,105 +2137,166 @@ section {
 <a class="whatsapp" href="https://wa.me/918124220527" target="_blank">☎</a>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
-AOS.init({
-    duration: 800,
-    easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-    once: true,
-    offset: 120
-});
+// AOS
+if(window.AOS) AOS.init({ duration:800, easing:'cubic-bezier(0.25,1,0.5,1)', once:true, offset:120 });
 
+// PAGE LOADER
+window.addEventListener("load", () => { setTimeout(() => { const l = document.getElementById("page-loader"); if(l) l.classList.add("hidden"); }, 1400); });
+
+// MOBILE MENU
 function toggleMobileMenu() {
-    const navMenu = document.getElementById("nav-menu");
-    const menuBtn = document.getElementById("mobile-menu-btn");
-    
-    if(navMenu && menuBtn) {
-        navMenu.classList.toggle("active");
-        menuBtn.classList.toggle("active");
-    }
+  const n = document.getElementById("nav-menu"), b = document.getElementById("mobile-menu-btn");
+  if(n && b) { n.classList.toggle("active"); b.classList.toggle("active"); }
 }
-
 function closeMobileMenu() {
-    const navMenu = document.getElementById("nav-menu");
-    const menuBtn = document.getElementById("mobile-menu-btn");
-    
-    if(navMenu && menuBtn) {
-        navMenu.classList.remove("active");
-        menuBtn.classList.remove("active");
-    }
+  const n = document.getElementById("nav-menu"), b = document.getElementById("mobile-menu-btn");
+  if(n && b) { n.classList.remove("active"); b.classList.remove("active"); }
 }
-
 document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.getElementById("mobile-menu-btn");
-    if(menuBtn) {
-        menuBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            toggleMobileMenu();
-        });
-    }
-    
-    document.addEventListener("click", (e) => {
-        const navMenu = document.getElementById("nav-menu");
-        const menuBtn = document.getElementById("mobile-menu-btn");
-        if(navMenu && navMenu.classList.contains("active") && !navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-            closeMobileMenu();
-        }
-    });
+  document.addEventListener("click", e => {
+    const n = document.getElementById("nav-menu"), b = document.getElementById("mobile-menu-btn");
+    if(n && n.classList.contains("active") && !n.contains(e.target) && b && !b.contains(e.target)) closeMobileMenu();
+  });
+  const items = document.querySelectorAll(".course-card,.feature-box,.contact-card-item,form,.about-img-container,.about-text");
+  items.forEach((el,i) => { el.classList.add("reveal-up"); el.style.setProperty("--reveal-delay", (Math.min(i%6,5)*75)+"ms"); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);} }); }, {threshold:0.14,rootMargin:"0px 0px -40px 0px"});
+  items.forEach(el => obs.observe(el));
 });
 
-function redirectToWhatsApp(courseName) {
-    const phoneNumber = "918124220527";
-    const textMessage = `Hi Tectalex Academy, I am interested in enrolling for the "${courseName}" program. Please provide me with more details.`;
-    const encodedMessage = encodeURIComponent(textMessage);
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
+// SCROLL EVENTS
+window.addEventListener("scroll", () => {
+  const h = document.getElementById("main-header");
+  if(h) { if(window.scrollY>50) h.classList.add("scrolled"); else h.classList.remove("scrolled"); }
+  const p = document.getElementById("scroll-progress");
+  if(p) p.style.width = (window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+"%";
+  const b = document.getElementById("back-to-top");
+  if(b) { if(window.scrollY>400) b.classList.add("visible"); else b.classList.remove("visible"); }
+});
+
+// WHATSAPP
+function redirectToWhatsApp(name) {
+  const msg = encodeURIComponent(`Hi Tectalex Academy, I am interested in enrolling for the "${name}" program. Please provide me with more details.`);
+  window.open(`https://wa.me/918124220527?text=${msg}`,'_blank');
+}
+function sendContactToWhatsApp(e) {
+  e.preventDefault();
+  const name=document.getElementById("formName").value, email=document.getElementById("formEmail").value, msg=document.getElementById("formMessage").value;
+  const text=encodeURIComponent(`*New Contact Inquiry - Tectalex Website*\n\n👤 *Name:* ${name}\n✉️ *Email:* ${email}\n💬 *Query:* ${msg}`);
+  window.open(`https://wa.me/918124220527?text=${text}`,'_blank');
 }
 
-function sendContactToWhatsApp(event) {
-    event.preventDefault();
-    const phoneNumber = "918124220527";
-    
-    const name = document.getElementById("formName").value;
-    const email = document.getElementById("formEmail").value;
-    const message = document.getElementById("formMessage").value;
-    
-    const structuredText = `*New Contact Inquiry - Tectalex Website*\n\n` +
-                           `👤 *Name:* ${name}\n` +
-                           `✉️ *Email:* ${email}\n` +
-                           `💬 *Query:* ${message}`;
-                           
-    const encodedFormMessage = encodeURIComponent(structuredText);
-    const whatsappFormURL = `https://wa.me/${phoneNumber}?text=${encodedFormMessage}`;
-    window.open(whatsappFormURL, '_blank');
-}
-
-window.addEventListener("scroll",()=>{
-    const header = document.getElementById("main-header");
-    if(window.scrollY > 50){
-        header.classList.add("scrolled");
+// TYPEWRITER
+(function(){
+  const lines=["Transforming Knowledge\nInto Expertise","Learn Today.\nLead Tomorrow.","Build Real Projects.\nLand Real Jobs."];
+  let li=0,ci=0,del=false,pause=false;
+  const el=document.getElementById("typewriter-text");
+  if(!el) return;
+  function tick(){
+    const cur=lines[li];
+    if(pause){pause=false;del=true;setTimeout(tick,1800);return;}
+    if(!del){
+      ci++;
+      el.innerHTML=cur.slice(0,ci).replace(/\n/g,"<br>");
+      if(ci===cur.length){pause=true;setTimeout(tick,200);return;}
+      setTimeout(tick,55);
     } else {
-        header.classList.remove("scrolled");
+      ci--;
+      el.innerHTML=cur.slice(0,ci).replace(/\n/g,"<br>");
+      if(ci===0){del=false;li=(li+1)%lines.length;setTimeout(tick,400);return;}
+      setTimeout(tick,28);
     }
-});
+  }
+  setTimeout(tick,600);
+})();
 
-const heroSection = document.getElementById("home");
-let currentImgNumber = 1;
-const totalImages = 16;
-const changeInterval = 4000; 
+// COUNTERS
+function animateCounter(el){
+  const target=parseInt(el.dataset.target), suffix=el.dataset.suffix||"", dur=1800, start=performance.now();
+  function upd(now){ const p=Math.min((now-start)/dur,1), e=1-Math.pow(1-p,3); el.textContent=Math.round(e*target)+suffix; if(p<1) requestAnimationFrame(upd); }
+  requestAnimationFrame(upd);
+}
+const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);sObs.unobserve(e.target);}});},{threshold:0.5});
+document.querySelectorAll(".stat-number").forEach(el=>sObs.observe(el));
 
-setInterval(() => {
-    currentImgNumber++;
-    if (currentImgNumber > totalImages) {
-        currentImgNumber = 1; 
+// HERO PARTICLES
+(function(){
+  const c=document.getElementById("hero-canvas"); if(!c) return;
+  const ctx=c.getContext("2d"); let pts=[];
+  function resize(){ c.width=c.offsetWidth; c.height=c.offsetHeight; }
+  resize(); window.addEventListener("resize",resize);
+  const r=(a,b)=>Math.random()*(b-a)+a;
+  for(let i=0;i<55;i++) pts.push({x:r(0,c.width),y:r(0,c.height),rx:r(0.8,2.8),dx:r(-0.35,0.35),dy:r(-0.45,-0.12),a:r(0.15,0.55),da:r(0.002,0.006)*(Math.random()>.5?1:-1)});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(p=>{
+      ctx.save(); ctx.globalAlpha=p.a; ctx.beginPath(); ctx.arc(p.x,p.y,p.rx,0,Math.PI*2);
+      ctx.fillStyle=Math.random()>.7?"#10b981":"#ffffff"; ctx.fill(); ctx.restore();
+      p.x+=p.dx; p.y+=p.dy; p.a+=p.da;
+      if(p.a<=0.05||p.a>=0.65) p.da*=-1;
+      if(p.y<-10){p.y=c.height+10;p.x=r(0,c.width);}
+      if(p.x<-10) p.x=c.width+10;
+      if(p.x>c.width+10) p.x=-10;
+    });
+    requestAnimationFrame(draw);
+  }
+  if(!window.matchMedia("(prefers-reduced-motion:reduce)").matches) draw();
+})();
+
+// HERO SLIDESHOW
+(function(){
+  const hero=document.getElementById("home"); if(!hero) return;
+  const pref=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const hc=hero.querySelector(".hero-content");
+  const layers=[document.createElement("div"),document.createElement("div")];
+  let active=0, cur=1;
+  layers.forEach((l,i)=>{ l.className="hero-bg-layer"+(i===0?" visible":""); l.style.backgroundImage="linear-gradient(rgba(10,25,47,0.88),rgba(16,185,129,0.65)),url('img1.jpeg')"; hero.prepend(l); });
+  if(!pref){
+    setInterval(()=>{ cur=cur>=16?1:cur+1; const next=active===0?1:0; layers[next].style.backgroundImage=`linear-gradient(rgba(10,25,47,0.88),rgba(16,185,129,0.65)),url('img${cur}.jpeg')`; layers[next].classList.add("visible"); layers[active].classList.remove("visible"); active=next; },4000);
+    hero.addEventListener("mousemove",e=>{ if(!hc) return; hc.style.transform=`translate3d(${(e.clientX/window.innerWidth-.5)*12}px,${(e.clientY/window.innerHeight-.5)*10}px,0)`; });
+    hero.addEventListener("mouseleave",()=>{ if(hc) hc.style.transform="translate3d(0,0,0)"; });
+  }
+})();
+
+// CUSTOM ANIMATED CURSOR
+(function(){
+  const dot=document.getElementById("cursor-dot"), ring=document.getElementById("cursor-ring"), tc=document.getElementById("cursor-trail-canvas");
+  if(!dot||!ring||!tc) return;
+  if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const ctx=tc.getContext("2d");
+  function resize(){ tc.width=window.innerWidth; tc.height=window.innerHeight; }
+  resize(); window.addEventListener("resize",resize);
+  let mx=-200,my=-200,dx=-200,dy=-200,rx=-200,ry=-200;
+  const trail=[]; const TL=22;
+  for(let i=0;i<TL;i++) trail.push({x:-200,y:-200});
+  let ti=0;
+  document.addEventListener("mousemove",e=>{
+    mx=e.clientX; my=e.clientY;
+    trail[ti]={x:e.clientX,y:e.clientY}; ti=(ti+1)%TL;
+    document.body.classList.add("cur-active");
+  });
+  document.addEventListener("mouseleave",()=>document.body.classList.remove("cur-active"));
+  document.addEventListener("mousedown",()=>document.body.classList.add("cur-click"));
+  document.addEventListener("mouseup",()=>document.body.classList.remove("cur-click"));
+  const hSel="a,button,input,textarea,select,.course-card,.feature-box,.enroll-btn,.logo-section,.footer-socials a,#back-to-top,.whatsapp,.menu-toggle";
+  document.addEventListener("mouseover",e=>{ if(e.target.closest(hSel)) document.body.classList.add("cur-hover"); });
+  document.addEventListener("mouseout",e=>{ if(e.target.closest(hSel)) document.body.classList.remove("cur-hover"); });
+  function animate(){
+    dx+=(mx-dx)*0.18; dy+=(my-dy)*0.18;
+    rx+=(mx-rx)*0.09; ry+=(my-ry)*0.09;
+    dot.style.left=dx+"px"; dot.style.top=dy+"px";
+    ring.style.left=rx+"px"; ring.style.top=ry+"px";
+    ctx.clearRect(0,0,tc.width,tc.height);
+    for(let i=0;i<TL;i++){
+      const idx=(ti-1-i+TL)%TL, p=trail[idx];
+      const prog=1-i/TL, rad=prog*5+1, alpha=prog*0.4;
+      ctx.beginPath(); ctx.arc(p.x,p.y,rad,0,Math.PI*2);
+      ctx.fillStyle=`rgba(16,185,129,${alpha})`; ctx.fill();
     }
-    if(heroSection) {
-        heroSection.style.background = `linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img${currentImgNumber}.jpeg')`;
-        heroSection.style.backgroundSize = "cover";
-        heroSection.style.backgroundPosition = "center";
-    }
-}, changeInterval);
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 </script>
-
 </body>
 </html>
