@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tectalex Academy & Digital Solutions</title>
-<!-- Browser Tab Favicon Icon -->
 <link rel="icon" type="image/jpeg" href="logo.jpeg">
-<!-- Open Graph / Facebook / WhatsApp Preview Meta Tags -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tectalex.in/">
 <meta property="og:title" content="Tectalex Academy & Digital Solutions">
@@ -14,8 +12,6 @@
 <meta property="og:image" content="https://tectalex.in/logo.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
-<!-- Twitter / X Preview Meta Tags -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://tectalex.in/">
 <meta property="twitter:title" content="Tectalex Academy & Digital Solutions">
@@ -23,7 +19,6 @@
 <meta property="twitter:image" content="https://tectalex.in/logo.jpeg">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
 :root {
     --primary: #0a192f;
@@ -35,7 +30,6 @@
     --bg-light: #f8fafc;
     --card-bg: #ffffff;
 }
-
 *{
 margin:0;
 padding:0;
@@ -43,15 +37,12 @@ box-sizing:border-box;
 scroll-behavior:smooth;
 font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-
 body{
 background: var(--bg-light);
 overflow-x:hidden;
 color: var(--text-main);
 -webkit-font-smoothing: antialiased;
 }
-
-/* NAVIGATION HEADER (GLASSMORPHISM WITH SLICK TRANSITIONS) */
 header{
 position:fixed;
 top:0;
@@ -68,20 +59,17 @@ z-index:9999;
 box-shadow:0 4px 30px rgba(0,0,0,0.1);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 header.scrolled {
 padding: 15px 80px;
 background: rgba(10, 25, 47, 0.98);
 box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
-
 .logo-section{
 display:flex;
 align-items:center;
 gap:15px;
 cursor: pointer;
 }
-
 .logo-section img{
 width:55px;
 height:55px;
@@ -91,18 +79,15 @@ object-fit: cover;
 border: 2px solid rgba(255,255,255,0.1);
 transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
 .logo-section:hover img {
 transform: rotate(-8px) scale(1.1);
 }
-
 .logo-text h2{
 color:white;
 font-size:24px;
 font-weight: 800;
 letter-spacing: 1.5px;
 }
-
 .logo-text p{
 color: var(--accent);
 font-weight:700;
@@ -111,12 +96,10 @@ text-transform: uppercase;
 letter-spacing: 1px;
 margin-top: 2px;
 }
-
 nav {
 display: flex;
 align-items: center;
 }
-
 nav a{
 color: #cbd5e1;
 text-decoration:none;
@@ -127,11 +110,9 @@ transition: color 0.3s ease;
 position: relative;
 padding: 5px 0;
 }
-
 nav a:hover{
 color: white;
 }
-
 nav a::after {
 content: '';
 position: absolute;
@@ -143,12 +124,9 @@ background: var(--accent);
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 transform: translateX(-50%);
 }
-
 nav a:hover::after {
 width: 100%;
 }
-
-/* FIXED EXPLICIT MOBILE HAMBURGER ICON ALIGNMENT OVERRIDES */
 .menu-toggle {
 display: none;
 flex-direction: column;
@@ -161,7 +139,6 @@ cursor: pointer;
 padding: 0;
 z-index: 10000;
 }
-
 .menu-toggle span {
 display: block !important;
 width: 100% !important;
@@ -170,8 +147,6 @@ background-color: #ffffff !important;
 border-radius: 4px;
 transition: all 0.3s ease-in-out;
 }
-
-/* PREMIUM HERO SECTION WITH CINEMATIC FADE-IN ANIMATIONS */
 .hero{
 height:100vh;
 background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(16, 185, 129, 0.65)), url('img1.jpeg');
@@ -188,7 +163,6 @@ position: relative;
 overflow: hidden;
 isolation: isolate;
 }
-
 .hero-bg-layer {
 position: absolute;
 inset: 0;
@@ -200,7 +174,6 @@ transition: opacity 1.2s ease, transform 6s ease;
 z-index: 0;
 will-change: opacity, transform;
 }
-
 .hero-bg-layer.visible {
 opacity: 1;
 transform: scale(1.1);
@@ -334,7 +307,6 @@ box-shadow: 0 20px 35px rgba(255,255,255,0.3);
     }
 }
 
-/* SECTIONS BASE STYLING */
 section{
 padding:120px 80px;
 position: relative;
@@ -384,7 +356,6 @@ background: white;
 animation: titleLineSweep 3.5s ease-in-out infinite;
 }
 
-/* CORPORATE ABOUT SECTION WITH HOVER MOTION */
 .about{
 display:grid;
 grid-template-columns: 1.1fr 0.9fr;
@@ -460,7 +431,6 @@ transition: border-color 0.3s;
     border-color: var(--primary);
 }
 
-/* HIGH-STANDARD COURSE GRID & CARDS */
 .courses-section {
 background: #f1f5f9;
 }
@@ -532,7 +502,6 @@ z-index: 1;
 left: 125%;
 }
 
-/* FLEX DISPLAY FOR COMBO OFFERS MULTIPLE IMAGES */
 .combo-image-flex {
 display: flex;
 width: 100%;
@@ -688,7 +657,6 @@ form button:hover::before {
 transform: translateX(120%) skewX(-18deg);
 }
 
-/* PREMIUM WHY CHOOSE US SECTION */
 .features{
 background: var(--primary);
 color:white;
@@ -778,7 +746,6 @@ font-size: 15px;
 line-height: 1.6;
 }
 
-/* CORPORATE CONTACT SECTION */
 .contact{
 background: var(--card-bg);
 }
@@ -933,7 +900,6 @@ font-size: 16px;
 margin-bottom: 30px;
 }
 
-/* SOCIAL ICONS PACK STYLING */
 .footer-socials {
 display: flex;
 justify-content: center;
@@ -1048,8 +1014,6 @@ transform: translateY(0);
         transform: none;
     }
 }
-
-/* RESPONSIVE DESIGN MEDIA QUERIES */
 @media(max-width:1024px) {
 header, header.scrolled { padding: 20px 40px; }
 section { padding: 80px 40px; }
@@ -1189,7 +1153,6 @@ section {
 }
 }
 
-/* ===== CUSTOM CURSOR ===== */
 #cursor-dot {
 position: fixed;
 top: 0; left: 0;
@@ -1244,7 +1207,6 @@ background: linear-gradient(90deg, #10b981, #34d399, #06b6d4);
 z-index: 9999990; transition: width 0.1s linear;
 }
 
-/* ===== BACK TO TOP ===== */
 #back-to-top {
 position: fixed; bottom: 110px; right: 30px;
 width: 48px; height: 48px;
@@ -1261,7 +1223,6 @@ text-decoration: none;
 #back-to-top.visible { opacity: 1; transform: translateY(0); }
 #back-to-top:hover { background: var(--accent); color: var(--primary); transform: translateY(-3px); }
 
-/* ===== PAGE LOADER ===== */
 #page-loader {
 position: fixed; inset: 0; background: var(--primary);
 z-index: 9999995; display: flex; flex-direction: column;
@@ -1274,7 +1235,6 @@ transition: opacity 0.6s ease, visibility 0.6s ease;
 .loader-bar-fill { height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4); border-radius: 3px; animation: loaderFill 1.2s ease forwards; }
 @keyframes loaderFill { from { width: 0% } to { width: 100% } }
 
-/* ===== STATS BAND ===== */
 .stats-band {
 background: var(--primary); padding: 60px 80px;
 display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
@@ -1289,7 +1249,6 @@ height: 60%; width: 1px; background: rgba(255,255,255,0.1);
 .stat-number { font-size: 52px; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -2px; display: block; }
 .stat-label { font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; display: block; font-weight: 600; }
 
-/* ===== GRADIENT TITLES ===== */
 .gradient-title {
 background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 50%, #10b981 100%);
 -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -1299,7 +1258,6 @@ background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #10b981 100%);
 -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-/* ===== HERO EXTRAS ===== */
 #hero-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; width: 100%; height: 100%; }
 .typewriter-cursor {
 display: inline-block; width: 3px; height: 0.85em;
@@ -1326,7 +1284,6 @@ opacity: 0; animation: fadeInUp 1s ease 1.5s forwards;
 .scroll-mouse::before { content: ''; width: 3px; height: 8px; background: #10b981; border-radius: 2px; animation: sdot 1.8s ease-in-out infinite; }
 @keyframes sdot { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(12px);opacity:0} }
 
-/* ===== FEATURE ICONS ===== */
 .feature-icon { font-size: 36px; margin-bottom: 20px; display: block; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
 .feature-box:hover .feature-icon { transform: scale(1.2) translateY(-4px); }
 
@@ -1675,6 +1632,126 @@ opacity: 0; animation: fadeInUp 1s ease 1.5s forwards;
         <div class="course-footer">
         <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹1599</span></div>
         <button onclick="redirectToWhatsApp('AI Tools Usage Guide')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="category-title" data-aos="fade-up">Database & Advanced Computing Courses</div>
+    <div class="course-grid">
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Core CS</span>
+        <div class="course-image-wrapper"><img src="dsa.jpg" alt="Data Structures and Algorithms"></div>
+        <div class="course-details">
+        <h3>Data Structures & Algorithms</h3>
+        <p class="desc">Master arrays, linked lists, trees, graphs, sorting, searching, and problem-solving techniques for coding interviews and real-world applications.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+        <button onclick="redirectToWhatsApp('Data Structures and Algorithms')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Analytics</span>
+        <div class="course-image-wrapper"><img src="ds.jpeg" alt="Data Science"></div>
+        <div class="course-details">
+        <h3>Data Science</h3>
+        <p class="desc">Explore end-to-end data workflows covering collection, wrangling, exploration, visualization, and deriving actionable business insights.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Data Science')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Intelligence</span>
+        <div class="course-image-wrapper"><img src="BI.jpg" alt="Business Intelligence"></div>
+        <div class="course-details">
+        <h3>Business Intelligence</h3>
+        <p class="desc">Learn to design interactive dashboards, reporting pipelines, and KPI analytics systems using Power BI and modern BI toolsets.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('Business Intelligence')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Information</span>
+        <div class="course-image-wrapper"><img src="ir.jpg" alt="Information Retrieval"></div>
+        <div class="course-details">
+        <h3>Information Retrieval</h3>
+        <p class="desc">Study indexing, ranking, search engine architecture, query processing, and text-based information extraction systems.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('Information Retrieval')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">AI & NLP</span>
+        <div class="course-image-wrapper"><img src="nlp.jpg" alt="Natural Language Processing"></div>
+        <div class="course-details">
+        <h3>Natural Language Processing</h3>
+        <p class="desc">Dive into tokenization, sentiment analysis, named entity recognition, transformers, and building real-world NLP pipelines.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3999</span></div>
+        <button onclick="redirectToWhatsApp('Natural Language Processing')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Database</span>
+        <div class="course-image-wrapper"><img src="rdbms.jpg" alt="RDBMS"></div>
+        <div class="course-details">
+        <h3>RDBMS</h3>
+        <p class="desc">Understand relational database concepts, normalization, ER diagrams, constraints, and hands-on structured query design.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
+        <button onclick="redirectToWhatsApp('RDBMS')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Database</span>
+        <div class="course-image-wrapper"><img src="dbms.jpg" alt="DBMS"></div>
+        <div class="course-details">
+        <h3>DBMS</h3>
+        <p class="desc">Cover foundational database management concepts including storage models, transaction processing, indexing, and concurrency control.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2499</span></div>
+        <button onclick="redirectToWhatsApp('DBMS')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Emerging Tech</span>
+        <div class="course-image-wrapper"><img src="IOT.jpg" alt="Internet of Things"></div>
+        <div class="course-details">
+        <h3>Internet of Things</h3>
+        <p class="desc">Explore IoT architecture, sensor integration, edge computing, smart device communication protocols, and real-world embedded project builds.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹3499</span></div>
+        <button onclick="redirectToWhatsApp('Internet of Things')" class="enroll-btn">Enroll Now</button>
+        </div>
+        </div>
+        </div>
+
+        <div class="course-card" data-aos="fade-up">
+        <span class="course-badge">Database</span>
+        <div class="course-image-wrapper"><img src="pl.jpg" alt="PL/SQL"></div>
+        <div class="course-details">
+        <h3>PL/SQL</h3>
+        <p class="desc">Learn Oracle's procedural extension to SQL covering stored procedures, functions, triggers, cursors, and enterprise-grade database programming.</p>
+        <div class="course-footer">
+        <div class="price-container"><span class="price-label">Tuition Fee</span><span class="price">₹2999</span></div>
+        <button onclick="redirectToWhatsApp('PL/SQL')" class="enroll-btn">Enroll Now</button>
         </div>
         </div>
         </div>
@@ -2138,13 +2215,11 @@ opacity: 0; animation: fadeInUp 1s ease 1.5s forwards;
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-// AOS
+
 if(window.AOS) AOS.init({ duration:800, easing:'cubic-bezier(0.25,1,0.5,1)', once:true, offset:120 });
 
-// PAGE LOADER
 window.addEventListener("load", () => { setTimeout(() => { const l = document.getElementById("page-loader"); if(l) l.classList.add("hidden"); }, 1400); });
 
-// MOBILE MENU
 function toggleMobileMenu() {
   const n = document.getElementById("nav-menu"), b = document.getElementById("mobile-menu-btn");
   if(n && b) { n.classList.toggle("active"); b.classList.toggle("active"); }
@@ -2164,7 +2239,6 @@ document.addEventListener("DOMContentLoaded", () => {
   items.forEach(el => obs.observe(el));
 });
 
-// SCROLL EVENTS
 window.addEventListener("scroll", () => {
   const h = document.getElementById("main-header");
   if(h) { if(window.scrollY>50) h.classList.add("scrolled"); else h.classList.remove("scrolled"); }
@@ -2174,7 +2248,6 @@ window.addEventListener("scroll", () => {
   if(b) { if(window.scrollY>400) b.classList.add("visible"); else b.classList.remove("visible"); }
 });
 
-// WHATSAPP
 function redirectToWhatsApp(name) {
   const msg = encodeURIComponent(`Hi Tectalex Academy, I am interested in enrolling for the "${name}" program. Please provide me with more details.`);
   window.open(`https://wa.me/918124220527?text=${msg}`,'_blank');
@@ -2186,7 +2259,6 @@ function sendContactToWhatsApp(e) {
   window.open(`https://wa.me/918124220527?text=${text}`,'_blank');
 }
 
-// TYPEWRITER
 (function(){
   const lines=["Transforming Knowledge\nInto Expertise","Learn Today.\nLead Tomorrow.","Build Real Projects.\nLand Real Jobs."];
   let li=0,ci=0,del=false,pause=false;
@@ -2209,8 +2281,6 @@ function sendContactToWhatsApp(e) {
   }
   setTimeout(tick,600);
 })();
-
-// COUNTERS
 function animateCounter(el){
   const target=parseInt(el.dataset.target), suffix=el.dataset.suffix||"", dur=1800, start=performance.now();
   function upd(now){ const p=Math.min((now-start)/dur,1), e=1-Math.pow(1-p,3); el.textContent=Math.round(e*target)+suffix; if(p<1) requestAnimationFrame(upd); }
@@ -2219,7 +2289,6 @@ function animateCounter(el){
 const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);sObs.unobserve(e.target);}});},{threshold:0.5});
 document.querySelectorAll(".stat-number").forEach(el=>sObs.observe(el));
 
-// HERO PARTICLES
 (function(){
   const c=document.getElementById("hero-canvas"); if(!c) return;
   const ctx=c.getContext("2d"); let pts=[];
@@ -2243,7 +2312,6 @@ document.querySelectorAll(".stat-number").forEach(el=>sObs.observe(el));
   if(!window.matchMedia("(prefers-reduced-motion:reduce)").matches) draw();
 })();
 
-// HERO SLIDESHOW
 (function(){
   const hero=document.getElementById("home"); if(!hero) return;
   const pref=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -2257,8 +2325,6 @@ document.querySelectorAll(".stat-number").forEach(el=>sObs.observe(el));
     hero.addEventListener("mouseleave",()=>{ if(hc) hc.style.transform="translate3d(0,0,0)"; });
   }
 })();
-
-// CUSTOM ANIMATED CURSOR
 (function(){
   const dot=document.getElementById("cursor-dot"), ring=document.getElementById("cursor-ring"), tc=document.getElementById("cursor-trail-canvas");
   if(!dot||!ring||!tc) return;
